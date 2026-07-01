@@ -1404,7 +1404,7 @@ function sendTanis() {
   var tel  = document.getElementById('tanis-tel').value.trim();
   var mail = document.getElementById('tanis-mail').value.trim();
   if (!ad || !tel || !mail) { showToast('Lütfen tüm alanları doldurun.', false); return; }
-  airtableKaydet({ Name: ad, Phone: tel, Email: mail, Type: 'Meet', Status: 'Yeni', Date: new Date().toISOString().split('T')[0] });
+  airtableKaydet({ Name: ad, Phone: tel, Email: mail, Type: 'Meet', Date: new Date().toISOString().split('T')[0] });
   gonder({
     konu: 'Terapistle Tanış Talebi',
     'Ad Soyad': ad, 'Telefon': tel, 'E-posta': mail,
@@ -1418,7 +1418,7 @@ function sendMokso() {
   var mail  = document.getElementById('mokso-mail').value.trim();
   var cocuk = document.getElementById('mokso-cocuk').value.trim();
   if (!ad || !tel || !mail || !cocuk) { showToast('Lütfen tüm alanları doldurun.', false); return; }
-  airtableKaydet({ Name: ad, Phone: tel, Email: mail, Type: 'MOKSO', Message: 'Çocuk: ' + cocuk, Status: 'Yeni', Date: new Date().toISOString().split('T')[0] });
+  airtableKaydet({ Name: ad, Phone: tel, Email: mail, Type: 'MOKSO', Message: 'Çocuk: ' + cocuk, Date: new Date().toISOString().split('T')[0] });
   gonder({
     konu: 'Mokso Testi Talebi',
     'Ebeveyn Ad Soyad': ad, 'Telefon': tel, 'E-posta': mail,
@@ -1437,7 +1437,7 @@ function sendSeans() {
   if (!ad || !tel || !mail) { showToast('Lütfen zorunlu alanları doldurun.', false); return; }
   if (icin === 'cocuk' && !cocuk) { showToast('Lütfen çocuğunuzun adını girin.', false); return; }
   var kimin = icin === 'benim' ? 'Session' : 'Session';
-  airtableKaydet({ Name: ad, Phone: tel, Email: mail, Type: kimin, Message: (icin === 'cocuk' ? 'Çocuk: ' + cocuk + ' | ' : '') + (sorun || ''), Status: 'Yeni', Date: new Date().toISOString().split('T')[0] });
+  airtableKaydet({ Name: ad, Phone: tel, Email: mail, Type: kimin, Message: (icin === 'cocuk' ? 'Çocuk: ' + cocuk + ' | ' : '') + (sorun || ''), Date: new Date().toISOString().split('T')[0] });
   gonder({
     konu: 'Seans Talebi',
     'Ad Soyad': ad, 'Telefon': tel, 'E-posta': mail,
