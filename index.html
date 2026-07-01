@@ -1269,13 +1269,16 @@ const AT_TABLE = 'tblhmyB48pz4zJYDd';
 
 async function airtableKaydet(fields) {
   try {
-    await fetch('/.netlify/functions/airtable', {
+    await fetch(`https://api.airtable.com/v0/${AT_BASE}/${AT_TABLE}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Authorization': 'Bearer ' + AT_TOKEN,
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ fields })
     });
   } catch(e) {
-    console.error('Airtable hatası:', e);
+    console.error('Airtable kayıt hatası:', e);
   }
 }
 
@@ -1320,16 +1323,27 @@ async function sendMessage() {
   addMsg('user', text);
   showTyping();
   try {
-    const res = await fetch('/.netlify/functions/chat', {
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: chatHistory })
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + GROQ_KEY
+      },
+      body: JSON.stringify({
+        model: GROQ_MODEL,
+        max_tokens: 800,
+        messages: [
+          { role: 'system', content: SYSTEM_PROMPT },
+          ...chatHistory
+        ]
+      })
     });
     const data = await res.json();
     hideTyping();
-    if (data.error) { addMsg('assistant', '⚠️ ' + data.error); return; }
-    chatHistory.push({ role: 'assistant', content: data.reply });
-    addMsg('assistant', data.reply);
+    if (data.error) { addMsg('assistant', '⚠️ ' + data.error.message); return; }
+    const reply = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content || 'Üzgünüm, yanıt veremiyorum.';
+    chatHistory.push({ role: 'assistant', content: reply });
+    addMsg('assistant', reply);
   } catch(e) {
     hideTyping();
     addMsg('assistant', 'Bağlantı hatası oluştu 🙏 Lütfen tekrar deneyin.');
@@ -1359,12 +1373,12 @@ function toggleChildFields(show) {
   document.getElementById('childFields').classList.toggle('show', show);
 }
 
+const W3F_KEY = 'a08d77da-eba3-4931-84ce-4ee1d5861394';
+
 // ── E-posta gönder (Web3Forms) ──────────────────────────────────────────
 async function gonder(params, successId, toastMsg) {
-  // Anında başarı göster
   document.getElementById(successId).classList.add('show');
   showToast(toastMsg, true);
-  // Arka planda gönder
   try {
     const formData = new FormData();
     formData.append('access_key', W3F_KEY);
