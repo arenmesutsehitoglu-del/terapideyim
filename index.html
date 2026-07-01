@@ -971,7 +971,7 @@
   <nav>
     <a href="#chat">Destek Al</a>
     <a href="#hakkimizda">Hakkımızda</a>
-    <a href="#mokso">Mokso Testi</a>
+    <a href="#moxo">Moxo Testi</a>
     <a href="#tanis">Terapistle Tanış</a>
     <a href="#seans">Seans</a>
     <a href="tel:+905333592300">+90 533 359 23 00</a>
@@ -1164,35 +1164,35 @@
     <div class="success-msg" id="tanis-success">✓ Bilgileriniz iletildi! En kısa sürede dönüş yapılacak.</div>
   </div>
 
-  <!-- Mokso Testi -->
-  <div class="glass section-card" id="mokso">
+  <!-- Moxo Testi -->
+  <div class="glass section-card" id="moxo">
     <div class="section-header">
       <div class="section-tag">Değerlendirme</div>
-      <h2 class="section-title">Mokso Testi</h2>
+      <h2 class="section-title">Moxo Testi</h2>
       <p class="section-sub">Çocuğunuz için değerlendirme testi başlatmak üzere bilgileri doldurun.</p>
     </div>
 
     <div class="form-group">
       <label class="form-label">Ebeveyn Ad Soyad</label>
-      <input type="text" class="form-input" id="mokso-ad" placeholder="Adınız ve soyadınız">
+      <input type="text" class="form-input" id="moxo-ad" placeholder="Adınız ve soyadınız">
     </div>
     <div class="form-row">
       <div class="form-group">
         <label class="form-label">Telefon</label>
-        <input type="tel" class="form-input" id="mokso-tel" placeholder="+90 5__">
+        <input type="tel" class="form-input" id="moxo-tel" placeholder="+90 5__">
       </div>
       <div class="form-group">
         <label class="form-label">E-posta</label>
-        <input type="email" class="form-input" id="mokso-mail" placeholder="ornek@mail.com">
+        <input type="email" class="form-input" id="moxo-mail" placeholder="ornek@mail.com">
       </div>
     </div>
     <div class="form-group">
       <label class="form-label">Çocuğun Adı</label>
-      <input type="text" class="form-input" id="mokso-cocuk" placeholder="Çocuğunuzun adı ve soyadı">
+      <input type="text" class="form-input" id="moxo-cocuk" placeholder="Çocuğunuzun adı ve soyadı">
     </div>
 
-    <button type="button" class="btn-primary btn-full" onclick="sendMokso()">Testi Oluştur</button>
-    <div class="success-msg" id="mokso-success">✓ Mokso testi talebiniz alındı! Uzmanımız sizi arayacak.</div>
+    <button type="button" class="btn-primary btn-full" onclick="sendMoxo()">Testi Oluştur</button>
+    <div class="success-msg" id="moxo-success">✓ Moxo testi talebiniz alındı! Uzmanımız sizi arayacak.</div>
   </div>
 
   <!-- Seans Oluştur -->
@@ -1412,18 +1412,18 @@ function sendTanis() {
   }, 'tanis-success', 'Bilgileriniz iletildi!');
 }
 
-function sendMokso() {
-  var ad    = document.getElementById('mokso-ad').value.trim();
-  var tel   = document.getElementById('mokso-tel').value.trim();
-  var mail  = document.getElementById('mokso-mail').value.trim();
-  var cocuk = document.getElementById('mokso-cocuk').value.trim();
+function sendMoxo() {
+  var ad    = document.getElementById('moxo-ad').value.trim();
+  var tel   = document.getElementById('moxo-tel').value.trim();
+  var mail  = document.getElementById('moxo-mail').value.trim();
+  var cocuk = document.getElementById('moxo-cocuk').value.trim();
   if (!ad || !tel || !mail || !cocuk) { showToast('Lütfen tüm alanları doldurun.', false); return; }
-  airtableKaydet({ Name: ad, Phone: tel, Email: mail, Type: 'MOKSO', Message: 'Çocuk: ' + cocuk, Date: new Date().toISOString().split('T')[0] });
+  airtableKaydet({ Name: ad, Phone: tel, Email: mail, Type: 'MOXO', Message: 'Çocuk: ' + cocuk, Date: new Date().toISOString().split('T')[0] });
   gonder({
-    konu: 'Mokso Testi Talebi',
+    konu: 'Moxo Testi Talebi',
     'Ebeveyn Ad Soyad': ad, 'Telefon': tel, 'E-posta': mail,
     'Çocuğun Adı': cocuk
-  }, 'mokso-success', 'Mokso testi talebiniz oluşturuldu!');
+  }, 'moxo-success', 'Moxo testi talebiniz oluşturuldu!');
 }
 
 function sendSeans() {
