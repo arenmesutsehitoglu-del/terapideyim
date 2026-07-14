@@ -1418,7 +1418,7 @@ function sendMoxo() {
   var mail  = document.getElementById('moxo-mail').value.trim();
   var cocuk = document.getElementById('moxo-cocuk').value.trim();
   if (!ad || !tel || !mail || !cocuk) { showToast('Lütfen tüm alanları doldurun.', false); return; }
-  airtableKaydet({ Name: ad, Phone: tel, Email: mail, Type: 'MOXO', Message: 'Çocuk: ' + cocuk, Date: new Date().toISOString().split('T')[0] });
+  airtableKaydet({ Name: ad, Phone: tel, Email: mail, Type: 'MOKSO', Message: 'Çocuk: ' + cocuk, Date: new Date().toISOString().split('T')[0] });
   gonder({
     konu: 'Moxo Testi Talebi',
     'Ebeveyn Ad Soyad': ad, 'Telefon': tel, 'E-posta': mail,
