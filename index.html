@@ -1269,16 +1269,13 @@ const AT_TABLE = 'tblhmyB48pz4zJYDd';
 
 async function airtableKaydet(fields) {
   try {
-    await fetch(`https://api.airtable.com/v0/${AT_BASE}/${AT_TABLE}`, {
+    await fetch('/.netlify/functions/airtable', {
       method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + AT_TOKEN,
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ fields })
     });
   } catch(e) {
-    console.error('Airtable kayıt hatası:', e);
+    console.error('Airtable hatası:', e);
   }
 }
 
