@@ -1190,6 +1190,10 @@
       <label class="form-label">Çocuğun Adı</label>
       <input type="text" class="form-input" id="moxo-cocuk" placeholder="Çocuğunuzun adı ve soyadı">
     </div>
+    <div class="form-group">
+      <label class="form-label">Çocuğun Yaşı</label>
+      <input type="number" class="form-input" id="moxo-yas" placeholder="Örn: 7" min="1" max="18">
+    </div>
 
     <button type="button" class="btn-primary btn-full" onclick="sendMoxo()">Testi Oluştur</button>
     <div class="success-msg" id="moxo-success">✓ Moxo testi talebiniz alındı! Uzmanımız sizi arayacak.</div>
@@ -1237,11 +1241,19 @@
         <label class="form-label">Çocuğun Adı</label>
         <input type="text" class="form-input" id="seans-cocuk" placeholder="Çocuğunuzun adı">
       </div>
+      <div class="form-group">
+        <label class="form-label">Çocuğun Yaşı</label>
+        <input type="number" class="form-input" id="seans-cocuk-yas" placeholder="Örn: 8" min="1" max="18">
+      </div>
     </div>
 
     <div class="form-group">
       <label class="form-label">Sorununuz / Notunuz</label>
       <textarea class="form-textarea" id="seans-sorun" placeholder="Kısaca belirtmek istediğiniz bir durum varsa..."></textarea>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Yaşınız</label>
+      <input type="number" class="form-input" id="seans-yas" placeholder="Örn: 32" min="1" max="100">
     </div>
 
     <button type="button" class="btn-primary btn-full" onclick="sendSeans()">Seans Oluştur</button>
@@ -1414,12 +1426,13 @@ function sendMoxo() {
   var tel   = document.getElementById('moxo-tel').value.trim();
   var mail  = document.getElementById('moxo-mail').value.trim();
   var cocuk = document.getElementById('moxo-cocuk').value.trim();
+  var yas   = document.getElementById('moxo-yas').value.trim();
   if (!ad || !tel || !mail || !cocuk) { showToast('Lütfen tüm alanları doldurun.', false); return; }
-  airtableKaydet({ Name: ad, Phone: tel, Email: mail, Type: 'MOKSO', Message: 'Çocuk: ' + cocuk, Date: new Date().toISOString().split('T')[0] });
+  airtableKaydet({ Name: ad, Phone: tel, Email: mail, Type: 'MOKSO', Message: 'Çocuk: ' + cocuk + (yas ? ' | Yaş: ' + yas : ''), Date: new Date().toISOString().split('T')[0] });
   gonder({
     konu: 'Moxo Testi Talebi',
     'Ebeveyn Ad Soyad': ad, 'Telefon': tel, 'E-posta': mail,
-    'Çocuğun Adı': cocuk
+    'Çocuğun Adı': cocuk, 'Çocuğun Yaşı': yas || '—'
   }, 'moxo-success', 'Moxo testi talebiniz oluşturuldu!');
 }
 
@@ -1428,17 +1441,20 @@ function sendSeans() {
   var tel   = document.getElementById('seans-tel').value.trim();
   var mail  = document.getElementById('seans-mail').value.trim();
   var sorun = document.getElementById('seans-sorun').value.trim();
+  var yas   = document.getElementById('seans-yas').value.trim();
   var icinEl = document.querySelector('input[name="icin"]:checked');
   var icin  = icinEl ? icinEl.value : 'benim';
   var cocuk = document.getElementById('seans-cocuk').value.trim();
+  var cocukYas = document.getElementById('seans-cocuk-yas').value.trim();
   if (!ad || !tel || !mail) { showToast('Lütfen zorunlu alanları doldurun.', false); return; }
   if (icin === 'cocuk' && !cocuk) { showToast('Lütfen çocuğunuzun adını girin.', false); return; }
   var kimin = icin === 'benim' ? 'Session' : 'Session';
-  airtableKaydet({ Name: ad, Phone: tel, Email: mail, Type: kimin, Message: (icin === 'cocuk' ? 'Çocuk: ' + cocuk + ' | ' : '') + (sorun || ''), Date: new Date().toISOString().split('T')[0] });
+  airtableKaydet({ Name: ad, Phone: tel, Email: mail, Type: kimin, Message: (icin === 'cocuk' ? 'Çocuk: ' + cocuk + (cocukYas ? ' | Çocuk Yaşı: ' + cocukYas : '') + ' | ' : '') + (sorun || '') + (yas ? ' | Yaş: ' + yas : ''), Date: new Date().toISOString().split('T')[0] });
   gonder({
     konu: 'Seans Talebi',
     'Ad Soyad': ad, 'Telefon': tel, 'E-posta': mail,
-    'Seans İçin': icin === 'benim' ? 'Kendisi için' : ('Çocuğu için (' + cocuk + ')'),
+    'Seans İçin': icin === 'benim' ? 'Kendisi için' : ('Çocuğu için (' + cocuk + (cocukYas ? ', ' + cocukYas + ' yaş' : '') + ')'),
+    'Yaş': yas || '—',
     'Not': sorun || '—'
   }, 'seans-success', 'Seans talebiniz oluşturuldu!');
 }
