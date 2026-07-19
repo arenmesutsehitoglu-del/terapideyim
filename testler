@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Testler | Terapideyim</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 10%, rgba(140,100,220,0.55) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 70% at 85% 20%, rgba(190,100,200,0.45) 0%, transparent 50%),
+    radial-gradient(ellipse 70% 60% at 50% 80%, rgba(100,140,220,0.4) 0%, transparent 55%),
+    linear-gradient(145deg, #1a0e2e 0%, #1e1040 30%, #0e1a38 60%, #1a0e2e 100%);
+  min-height: 100vh;
+  color: rgba(255,255,255,0.9);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 5%; left: 5%;
+  width: 420px; height: 420px;
+  background: radial-gradient(circle, rgba(160,100,255,0.15) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+  border-radius: 50%; filter: blur(8px);
+}
+
+.glass {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(32px) saturate(1.8);
+  -webkit-backdrop-filter: blur(32px) saturate(1.8);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 8px 40px rgba(100,60,200,0.2), inset 0 1px 0 rgba(255,255,255,0.15);
+}
+
+/* HEADER */
+header {
+  position: sticky; top: 0; z-index: 100;
+  padding: 0 2rem; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(40px);
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  text-decoration: none;
+}
+.logo-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, #a87ee0, #d478c0);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  box-shadow: 0 4px 16px rgba(168,126,224,0.4);
+}
+.logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 500;
+  color: rgba(255,255,255,0.92);
+}
+.logo-text span { color: #c8a0f0; }
+.back-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.7);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.back-btn:hover { background: rgba(255,255,255,0.18); color: white; }
+
+/* WRAP */
+.wrap {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  position: relative; z-index: 1;
+}
+
+/* TEST CARD */
+.test-hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.test-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(155,126,200,0.2);
+  border: 1px solid rgba(200,160,240,0.3);
+  border-radius: 50px;
+  padding: 5px 16px;
+  font-size: 12px; color: #d4aaff;
+  font-weight: 500; letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.test-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 36px; font-weight: 300;
+  color: rgba(255,255,255,0.95);
+  margin-bottom: 0.6rem;
+}
+.test-title em { font-style: italic; color: #e0a0d8; }
+.test-desc {
+  font-size: 15px; color: rgba(255,255,255,0.55);
+  line-height: 1.7; font-weight: 300;
+  max-width: 520px; margin: 0 auto 1.5rem;
+}
+.test-info-row {
+  display: flex; justify-content: center; gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.test-info-pill {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50px;
+  padding: 6px 16px;
+  font-size: 13px; color: rgba(255,255,255,0.6);
+  display: flex; align-items: center; gap: 6px;
+}
+
+/* PROGRESS */
+.progress-wrap {
+  margin-bottom: 2rem;
+}
+.progress-label {
+  display: flex; justify-content: space-between;
+  font-size: 13px; color: rgba(255,255,255,0.5);
+  margin-bottom: 8px;
+}
+.progress-bar-bg {
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #a87ee0, #d478c0);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+
+/* QUESTION CARD */
+.question-card {
+  border-radius: 24px;
+  padding: 2rem;
+  margin-bottom: 1.2rem;
+  transition: all 0.3s;
+}
+.q-number {
+  font-size: 12px; color: rgba(200,160,240,0.7);
+  font-weight: 500; letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.q-text {
+  font-size: 17px; color: rgba(255,255,255,0.92);
+  line-height: 1.55; margin-bottom: 1.4rem;
+  font-weight: 400;
+}
+
+/* OPTIONS */
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+@media (max-width: 500px) { .options-grid { grid-template-columns: 1fr; } }
+
+.option-btn {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 14px;
+  padding: 14px 16px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.option-btn:hover {
+  background: rgba(155,126,200,0.2);
+  border-color: rgba(200,160,240,0.4);
+}
+.option-btn.selected {
+  background: rgba(155,126,200,0.3);
+  border-color: rgba(200,160,240,0.7);
+  box-shadow: 0 0 0 2px rgba(155,126,200,0.2);
+}
+.option-dot {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.option-btn.selected .option-dot {
+  background: linear-gradient(135deg, #a87ee0, #d478c0);
+  border-color: transparent;
+}
+.option-btn.selected .option-dot::after {
+  content: '✓';
+  color: white;
+  font-size: 11px;
+  font-weight: 700;
+}
+.option-score {
+  font-size: 11px;
+  color: rgba(200,160,240,0.6);
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+.option-label {
+  font-size: 14px;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.4;
+}
+
+/* NAV BUTTONS */
+.nav-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 1.5rem;
+}
+.btn-nav {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.8);
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-size: 14px; font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+.btn-nav:hover { background: rgba(255,255,255,0.18); }
+.btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
+.btn-primary-nav {
+  background: linear-gradient(135deg, rgba(155,126,200,0.9), rgba(196,120,184,0.9));
+  border: 1px solid rgba(255,255,255,0.25);
+  color: white;
+  padding: 10px 28px;
+  border-radius: 50px;
+  font-size: 14px; font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(155,126,200,0.35);
+}
+.btn-primary-nav:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.q-counter {
+  font-size: 13px; color: rgba(255,255,255,0.4);
+}
+
+/* RESULT */
+.result-section {
+  display: none;
+  text-align: center;
+}
+.result-emoji {
+  font-size: 72px;
+  margin-bottom: 1rem;
+  display: block;
+  animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes bounceIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.result-score-wrap {
+  margin: 1.5rem 0;
+  display: flex; justify-content: center;
+}
+.result-score-circle {
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(155,126,200,0.3), rgba(196,120,184,0.3));
+  border: 2px solid rgba(200,160,240,0.4);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+}
+.score-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px; font-weight: 500;
+  color: rgba(255,255,255,0.95);
+  line-height: 1;
+}
+.score-label { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+.result-level {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 400;
+  color: rgba(255,255,255,0.92);
+  margin-bottom: 0.8rem;
+}
+.result-desc {
+  font-size: 15px; color: rgba(255,255,255,0.6);
+  line-height: 1.7; font-weight: 300;
+  max-width: 500px; margin: 0 auto 2rem;
+}
+.result-bars {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 8px; margin: 2rem 0;
+}
+.result-bar-item { text-align: center; }
+.result-bar-bg {
+  height: 60px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 8px;
+  position: relative; overflow: hidden;
+  margin-bottom: 6px;
+}
+.result-bar-fill {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  border-radius: 8px;
+  transition: height 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.result-bar-label { font-size: 11px; color: rgba(255,255,255,0.5); }
+
+.result-note {
+  background: rgba(155,126,200,0.12);
+  border: 1px solid rgba(200,160,240,0.2);
+  border-radius: 16px;
+  padding: 1.2rem 1.5rem;
+  font-size: 13px; color: rgba(255,255,255,0.6);
+  line-height: 1.65;
+  text-align: left;
+  margin-bottom: 1.5rem;
+}
+.result-note strong { color: rgba(255,255,255,0.85); }
+
+.btn-restart {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.8);
+  padding: 11px 28px;
+  border-radius: 50px;
+  font-size: 14px; font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+  margin-right: 10px;
+}
+.btn-restart:hover { background: rgba(255,255,255,0.18); }
+.btn-expert {
+  background: linear-gradient(135deg, rgba(155,126,200,0.9), rgba(196,120,184,0.9));
+  border: 1px solid rgba(255,255,255,0.25);
+  color: white;
+  padding: 11px 28px;
+  border-radius: 50px;
+  font-size: 14px; font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+  box-shadow: 0 4px 16px rgba(155,126,200,0.35);
+}
+.btn-expert:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* FADE */
+.fade-in { animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">
+    <div class="logo-icon">🌿</div>
+    <div class="logo-text">Terapideyim<span>.com</span></div>
+  </a>
+  <a href="index.html" class="back-btn">← Ana Sayfa</a>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="test-hero" id="testHero">
+    <div class="test-badge">🧠 Psikolojik Değerlendirme</div>
+    <h1 class="test-title">Beck <em>Anksiyete</em> Ölçeği</h1>
+    <p class="test-desc">Son bir hafta içinde kendinizi nasıl hissettiniz? 21 kısa soruyla kaygı düzeyinizi keşfedin. Sadece 3-4 dakika sürer.</p>
+    <div class="test-info-row">
+      <div class="test-info-pill">⏱ ~3-4 dakika</div>
+      <div class="test-info-pill">❓ 21 soru</div>
+      <div class="test-info-pill">🔒 Gizli & güvenli</div>
+    </div>
+    <button class="btn-primary-nav" onclick="startTest()" style="font-size:15px;padding:13px 36px;">Teste Başla →</button>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap" id="progressWrap" style="display:none;">
+    <div class="progress-label">
+      <span id="progressText">Soru 1 / 21</span>
+      <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <!-- QUESTION -->
+  <div id="questionArea" style="display:none;"></div>
+
+  <!-- NAV -->
+  <div class="nav-row" id="navRow" style="display:none;">
+    <button class="btn-nav" id="prevBtn" onclick="prevQ()" disabled>← Geri</button>
+    <span class="q-counter" id="qCounter"></span>
+    <button class="btn-primary-nav" id="nextBtn" onclick="nextQ()">İleri →</button>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result-section glass" id="resultSection" style="display:none;border-radius:28px;padding:2.5rem 2rem;">
+  </div>
+
+</div>
+
+<script>
+const questions = [
+  'Bedeninizin herhangi bir yerinde uyuşma veya karıncalanma',
+  'Sıcak / ateş basmaları',
+  'Bacaklarda halsizlik, titreme',
+  'Gevşeyememe',
+  'Çok kötü şeyler olacak korkusu',
+  'Baş dönmesi veya sersemlik',
+  'Kalp çarpıntısı',
+  'Dengeyi kaybetme duygusu',
+  'Dehşete kapılma',
+  'Sinirlilik',
+  'Boğuluyormuş gibi olma duygusu',
+  'Ellerde titreme',
+  'Titreklik',
+  'Kontrolü kaybetme korkusu',
+  'Nefes almada güçlük',
+  'Ölüm korkusu',
+  'Korkuya kapılma',
+  'Midede hazımsızlık ya da rahatsızlık hissi',
+  'Baygınlık',
+  'Yüzün kızarması',
+  'Terleme (sıcaklığa bağlı olmayan)'
+];
+
+const opts = [
+  { label: 'Hiç', sub: 'Beni etkilemedi', score: 0 },
+  { label: 'Hafif', sub: 'Pek etkilemedi', score: 1 },
+  { label: 'Orta', sub: 'Hoş değildi ama katlanabildim', score: 2 },
+  { label: 'Ciddi', sub: 'Dayanmakta çok zorlandım', score: 3 }
+];
+
+const emojis = ['😶', '😐', '😟', '😰'];
+
+let answers = new Array(21).fill(null);
+let current = 0;
+
+function startTest() {
+  document.getElementById('testHero').style.display = 'none';
+  document.getElementById('progressWrap').style.display = 'block';
+  document.getElementById('navRow').style.display = 'flex';
+  renderQ();
+}
+
+function renderQ() {
+  const area = document.getElementById('questionArea');
+  area.style.display = 'block';
+  const q = questions[current];
+  const selected = answers[current];
+
+  area.innerHTML = `
+    <div class="question-card glass fade-in">
+      <div class="q-number">Soru ${current + 1} / 21</div>
+      <div class="q-text">${q}</div>
+      <div class="options-grid">
+        ${opts.map((o, i) => `
+          <button class="option-btn ${selected === i ? 'selected' : ''}" onclick="selectOpt(${i})">
+            <div class="option-dot"></div>
+            <div>
+              <div class="option-score">${emojis[i]} ${o.label}</div>
+              <div class="option-label">${o.sub}</div>
+            </div>
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  // Progress
+  const pct = Math.round((current / 21) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `Soru ${current + 1} / 21`;
+  document.getElementById('progressPct').textContent = pct + '%';
+
+  // Buttons
+  document.getElementById('prevBtn').disabled = current === 0;
+  document.getElementById('qCounter').textContent = `${current + 1} / 21`;
+  const nextBtn = document.getElementById('nextBtn');
+  if (current === 20) {
+    nextBtn.textContent = 'Sonuçları Gör ✨';
+  } else {
+    nextBtn.textContent = 'İleri →';
+  }
+}
+
+function selectOpt(i) {
+  answers[current] = i;
+  renderQ();
+}
+
+function nextQ() {
+  if (answers[current] === null) {
+    const card = document.querySelector('.question-card');
+    card.style.border = '1px solid rgba(255,100,100,0.5)';
+    card.style.boxShadow = '0 0 0 3px rgba(255,100,100,0.15)';
+    setTimeout(() => {
+      card.style.border = '1px solid rgba(255,255,255,0.2)';
+      card.style.boxShadow = '0 8px 40px rgba(100,60,200,0.2), inset 0 1px 0 rgba(255,255,255,0.15)';
+    }, 600);
+    return;
+  }
+  if (current < 20) {
+    current++;
+    renderQ();
+  } else {
+    showResult();
+  }
+}
+
+function prevQ() {
+  if (current > 0) { current--; renderQ(); }
+}
+
+function showResult() {
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('progressPct').textContent = '100%';
+  document.getElementById('questionArea').style.display = 'none';
+  document.getElementById('navRow').style.display = 'none';
+
+  const total = answers.reduce((s, a) => s + (a !== null ? opts[a].score : 0), 0);
+
+  let emoji, level, color, desc, note;
+
+  if (total <= 7) {
+    emoji = '🌸'; level = 'Minimal Kaygı'; color = 'rgba(100,200,120,0.5)';
+    desc = 'Harika! Kaygı belirtileriniz oldukça düşük düzeyde. Bu hafta genel olarak iyi hissettiniz gibi görünüyor.';
+    note = '<strong>Ne anlama geliyor?</strong> 0-7 puan aralığı minimal kaygıya işaret eder. Bu, günlük yaşamınızın kaygıdan büyük ölçüde bağımsız olduğunu gösterir.';
+  } else if (total <= 15) {
+    emoji = '🌤'; level = 'Hafif Kaygı'; color = 'rgba(200,200,100,0.5)';
+    desc = 'Bazı kaygı belirtileri yaşıyor olabilirsiniz. Bu oldukça yaygın ve yönetilebilir bir durum.';
+    note = '<strong>Ne anlama geliyor?</strong> 8-15 puan hafif kaygıya işaret eder. Stres yönetimi teknikleri ve düzenli uyku-egzersiz rutinleri faydalı olabilir.';
+  } else if (total <= 25) {
+    emoji = '🌧'; level = 'Orta Düzey Kaygı'; color = 'rgba(200,150,80,0.5)';
+    desc = 'Orta düzeyde kaygı belirtileri yaşıyorsunuz. Bir uzmanla konuşmak faydalı olabilir.';
+    note = '<strong>Ne anlama geliyor?</strong> 16-25 puan orta düzey kaygıya işaret eder. Bir psikolog desteği, bu süreci çok daha kolay yönetmenize yardımcı olabilir.';
+  } else {
+    emoji = '⛈'; level = 'Şiddetli Kaygı'; color = 'rgba(200,100,100,0.5)';
+    desc = 'Yoğun kaygı belirtileri yaşıyorsunuz. Lütfen bir uzmandan destek almayı düşünün.';
+    note = '<strong>Ne anlama geliyor?</strong> 26+ puan şiddetli kaygıya işaret eder. Bu tür belirtiler günlük yaşamı önemli ölçüde etkileyebilir. Bir uzman psikolog ile görüşmenizi önemle tavsiye ederiz.';
+  }
+
+  const cats = [
+    { name: 'Bedensel', qs: [0,1,2,5,6,7,11,12,17,18,19,20] },
+    { name: 'Bilişsel', qs: [3,4,8,9,13,15,16] },
+    { name: 'Panik', qs: [10,14] }
+  ];
+
+  const resultSection = document.getElementById('resultSection');
+  resultSection.style.display = 'block';
+  resultSection.innerHTML = `
+    <span class="result-emoji">${emoji}</span>
+    <div class="result-level">${level}</div>
+    <div class="result-score-wrap">
+      <div class="result-score-circle" style="background:linear-gradient(135deg,${color},rgba(155,126,200,0.2))">
+        <div class="score-num">${total}</div>
+        <div class="score-label">/ 63 puan</div>
+      </div>
+    </div>
+    <p class="result-desc">${desc}</p>
+
+    <div class="result-bars">
+      <div class="result-bar-item">
+        <div class="result-bar-bg">
+          <div class="result-bar-fill" id="bar0" style="height:0%;background:linear-gradient(to top,#a87ee0,#d478c0)"></div>
+        </div>
+        <div class="result-bar-label">Bedensel</div>
+      </div>
+      <div class="result-bar-item">
+        <div class="result-bar-bg">
+          <div class="result-bar-fill" id="bar1" style="height:0%;background:linear-gradient(to top,#7896d4,#a87ee0)"></div>
+        </div>
+        <div class="result-bar-label">Bilişsel</div>
+      </div>
+      <div class="result-bar-item">
+        <div class="result-bar-bg">
+          <div class="result-bar-fill" id="bar2" style="height:0%;background:linear-gradient(to top,#d478c0,#e0a0d8)"></div>
+        </div>
+        <div class="result-bar-label">Panik</div>
+      </div>
+      <div class="result-bar-item">
+        <div class="result-bar-bg">
+          <div class="result-bar-fill" id="bar3" style="height:0%;background:linear-gradient(to top,#e0c068,#a87ee0)"></div>
+        </div>
+        <div class="result-bar-label">Toplam</div>
+      </div>
+    </div>
+
+    <div class="result-note">ℹ️ ${note}</div>
+    <div class="result-note" style="background:rgba(255,200,100,0.08);border-color:rgba(255,200,100,0.2);">
+      ⚠️ <strong>Önemli Not:</strong> Bu test klinik bir tanı aracı değildir. Sonuçlar yalnızca bilgilendirme amaçlıdır. Kesin değerlendirme için lütfen bir uzman psikologla görüşün.
+    </div>
+
+    <div>
+      <button class="btn-restart" onclick="restart()">🔄 Tekrar Yap</button>
+      <a href="index.html#seans" class="btn-expert">Uzmanla Görüş →</a>
+    </div>
+  `;
+
+  // Animate bars
+  setTimeout(() => {
+    const scores = cats.map(c => c.qs.reduce((s, qi) => s + (answers[qi] !== null ? opts[answers[qi]].score : 0), 0));
+    const maxes = [36, 21, 6];
+    scores.forEach((s, i) => {
+      document.getElementById('bar' + i).style.height = Math.round((s / maxes[i]) * 100) + '%';
+    });
+    document.getElementById('bar3').style.height = Math.round((total / 63) * 100) + '%';
+  }, 300);
+
+  resultSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+function restart() {
+  answers = new Array(21).fill(null);
+  current = 0;
+  document.getElementById('resultSection').style.display = 'none';
+  document.getElementById('progressWrap').style.display = 'block';
+  document.getElementById('navRow').style.display = 'flex';
+  renderQ();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
