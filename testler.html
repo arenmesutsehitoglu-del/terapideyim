@@ -6,372 +6,92 @@
 <title>Testler | Terapideyim</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: 'DM Sans', sans-serif;
-  background:
-    radial-gradient(ellipse 80% 60% at 15% 10%, rgba(140,100,220,0.55) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 70% at 85% 20%, rgba(190,100,200,0.45) 0%, transparent 50%),
-    radial-gradient(ellipse 70% 60% at 50% 80%, rgba(100,140,220,0.4) 0%, transparent 55%),
-    linear-gradient(145deg, #1a0e2e 0%, #1e1040 30%, #0e1a38 60%, #1a0e2e 100%);
-  min-height: 100vh;
-  color: rgba(255,255,255,0.9);
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 5%; left: 5%;
-  width: 420px; height: 420px;
-  background: radial-gradient(circle, rgba(160,100,255,0.15) 0%, transparent 70%);
-  pointer-events: none; z-index: 0;
-  border-radius: 50%; filter: blur(8px);
-}
-
-.glass {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(32px) saturate(1.8);
-  -webkit-backdrop-filter: blur(32px) saturate(1.8);
-  border: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 8px 40px rgba(100,60,200,0.2), inset 0 1px 0 rgba(255,255,255,0.15);
-}
-
-/* HEADER */
-header {
-  position: sticky; top: 0; z-index: 100;
-  padding: 0 2rem; height: 64px;
-  display: flex; align-items: center; justify-content: space-between;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(40px);
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-}
-.logo {
-  display: flex; align-items: center; gap: 10px;
-  text-decoration: none;
-}
-.logo-icon {
-  width: 36px; height: 36px;
-  background: linear-gradient(135deg, #a87ee0, #d478c0);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
-  box-shadow: 0 4px 16px rgba(168,126,224,0.4);
-}
-.logo-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px; font-weight: 500;
-  color: rgba(255,255,255,0.92);
-}
-.logo-text span { color: #c8a0f0; }
-.back-btn {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.7);
-  padding: 8px 18px;
-  border-radius: 50px;
-  font-size: 13px;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-.back-btn:hover { background: rgba(255,255,255,0.18); color: white; }
-
-/* WRAP */
-.wrap {
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 2.5rem 1.5rem 4rem;
-  position: relative; z-index: 1;
-}
-
-/* TEST CARD */
-.test-hero {
-  text-align: center;
-  margin-bottom: 2.5rem;
-}
-.test-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(155,126,200,0.2);
-  border: 1px solid rgba(200,160,240,0.3);
-  border-radius: 50px;
-  padding: 5px 16px;
-  font-size: 12px; color: #d4aaff;
-  font-weight: 500; letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-}
-.test-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 36px; font-weight: 300;
-  color: rgba(255,255,255,0.95);
-  margin-bottom: 0.6rem;
-}
-.test-title em { font-style: italic; color: #e0a0d8; }
-.test-desc {
-  font-size: 15px; color: rgba(255,255,255,0.55);
-  line-height: 1.7; font-weight: 300;
-  max-width: 520px; margin: 0 auto 1.5rem;
-}
-.test-info-row {
-  display: flex; justify-content: center; gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-.test-info-pill {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 50px;
-  padding: 6px 16px;
-  font-size: 13px; color: rgba(255,255,255,0.6);
-  display: flex; align-items: center; gap: 6px;
-}
-
-/* PROGRESS */
-.progress-wrap {
-  margin-bottom: 2rem;
-}
-.progress-label {
-  display: flex; justify-content: space-between;
-  font-size: 13px; color: rgba(255,255,255,0.5);
-  margin-bottom: 8px;
-}
-.progress-bar-bg {
-  height: 6px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 3px;
-  overflow: hidden;
-}
-.progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #a87ee0, #d478c0);
-  border-radius: 3px;
-  transition: width 0.4s ease;
-}
-
-/* QUESTION CARD */
-.question-card {
-  border-radius: 24px;
-  padding: 2rem;
-  margin-bottom: 1.2rem;
-  transition: all 0.3s;
-}
-.q-number {
-  font-size: 12px; color: rgba(200,160,240,0.7);
-  font-weight: 500; letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-}
-.q-text {
-  font-size: 17px; color: rgba(255,255,255,0.92);
-  line-height: 1.55; margin-bottom: 1.4rem;
-  font-weight: 400;
-}
-
-/* OPTIONS */
-.options-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-@media (max-width: 500px) { .options-grid { grid-template-columns: 1fr; } }
-
-.option-btn {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 14px;
-  padding: 14px 16px;
-  cursor: pointer;
-  text-align: left;
-  transition: all 0.2s;
-  display: flex; align-items: flex-start; gap: 10px;
-}
-.option-btn:hover {
-  background: rgba(155,126,200,0.2);
-  border-color: rgba(200,160,240,0.4);
-}
-.option-btn.selected {
-  background: rgba(155,126,200,0.3);
-  border-color: rgba(200,160,240,0.7);
-  box-shadow: 0 0 0 2px rgba(155,126,200,0.2);
-}
-.option-dot {
-  width: 20px; height: 20px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.3);
-  flex-shrink: 0;
-  margin-top: 1px;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s;
-}
-.option-btn.selected .option-dot {
-  background: linear-gradient(135deg, #a87ee0, #d478c0);
-  border-color: transparent;
-}
-.option-btn.selected .option-dot::after {
-  content: '✓';
-  color: white;
-  font-size: 11px;
-  font-weight: 700;
-}
-.option-score {
-  font-size: 11px;
-  color: rgba(200,160,240,0.6);
-  margin-bottom: 2px;
-  font-weight: 500;
-}
-.option-label {
-  font-size: 14px;
-  color: rgba(255,255,255,0.8);
-  line-height: 1.4;
-}
-
-/* NAV BUTTONS */
-.nav-row {
-  display: flex; justify-content: space-between; align-items: center;
-  margin-top: 1.5rem;
-}
-.btn-nav {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.8);
-  padding: 10px 24px;
-  border-radius: 50px;
-  font-size: 14px; font-weight: 500;
-  cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  transition: all 0.2s;
-}
-.btn-nav:hover { background: rgba(255,255,255,0.18); }
-.btn-nav:disabled { opacity: 0.3; cursor: not-allowed; }
-.btn-primary-nav {
-  background: linear-gradient(135deg, rgba(155,126,200,0.9), rgba(196,120,184,0.9));
-  border: 1px solid rgba(255,255,255,0.25);
-  color: white;
-  padding: 10px 28px;
-  border-radius: 50px;
-  font-size: 14px; font-weight: 500;
-  cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  transition: all 0.2s;
-  box-shadow: 0 4px 16px rgba(155,126,200,0.35);
-}
-.btn-primary-nav:hover { opacity: 0.9; transform: translateY(-1px); }
-
-.q-counter {
-  font-size: 13px; color: rgba(255,255,255,0.4);
-}
-
-/* RESULT */
-.result-section {
-  display: none;
-  text-align: center;
-}
-.result-emoji {
-  font-size: 72px;
-  margin-bottom: 1rem;
-  display: block;
-  animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-@keyframes bounceIn {
-  0% { transform: scale(0.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-.result-score-wrap {
-  margin: 1.5rem 0;
-  display: flex; justify-content: center;
-}
-.result-score-circle {
-  width: 120px; height: 120px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, rgba(155,126,200,0.3), rgba(196,120,184,0.3));
-  border: 2px solid rgba(200,160,240,0.4);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-}
-.score-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 42px; font-weight: 500;
-  color: rgba(255,255,255,0.95);
-  line-height: 1;
-}
-.score-label { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px; }
-.result-level {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px; font-weight: 400;
-  color: rgba(255,255,255,0.92);
-  margin-bottom: 0.8rem;
-}
-.result-desc {
-  font-size: 15px; color: rgba(255,255,255,0.6);
-  line-height: 1.7; font-weight: 300;
-  max-width: 500px; margin: 0 auto 2rem;
-}
-.result-bars {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 8px; margin: 2rem 0;
-}
-.result-bar-item { text-align: center; }
-.result-bar-bg {
-  height: 60px;
-  background: rgba(255,255,255,0.08);
-  border-radius: 8px;
-  position: relative; overflow: hidden;
-  margin-bottom: 6px;
-}
-.result-bar-fill {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  border-radius: 8px;
-  transition: height 1s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.result-bar-label { font-size: 11px; color: rgba(255,255,255,0.5); }
-
-.result-note {
-  background: rgba(155,126,200,0.12);
-  border: 1px solid rgba(200,160,240,0.2);
-  border-radius: 16px;
-  padding: 1.2rem 1.5rem;
-  font-size: 13px; color: rgba(255,255,255,0.6);
-  line-height: 1.65;
-  text-align: left;
-  margin-bottom: 1.5rem;
-}
-.result-note strong { color: rgba(255,255,255,0.85); }
-
-.btn-restart {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.8);
-  padding: 11px 28px;
-  border-radius: 50px;
-  font-size: 14px; font-weight: 500;
-  cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  transition: all 0.2s;
-  margin-right: 10px;
-}
-.btn-restart:hover { background: rgba(255,255,255,0.18); }
-.btn-expert {
-  background: linear-gradient(135deg, rgba(155,126,200,0.9), rgba(196,120,184,0.9));
-  border: 1px solid rgba(255,255,255,0.25);
-  color: white;
-  padding: 11px 28px;
-  border-radius: 50px;
-  font-size: 14px; font-weight: 500;
-  cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.2s;
-  box-shadow: 0 4px 16px rgba(155,126,200,0.35);
-}
-.btn-expert:hover { opacity: 0.9; transform: translateY(-1px); }
-
-/* FADE */
-.fade-in { animation: fadeIn 0.4s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:radial-gradient(ellipse 80% 60% at 15% 10%,rgba(140,100,220,.55) 0%,transparent 55%),radial-gradient(ellipse 60% 70% at 85% 20%,rgba(190,100,200,.45) 0%,transparent 50%),radial-gradient(ellipse 70% 60% at 50% 80%,rgba(100,140,220,.4) 0%,transparent 55%),linear-gradient(145deg,#1a0e2e 0%,#1e1040 30%,#0e1a38 60%,#1a0e2e 100%);min-height:100vh;color:rgba(255,255,255,.9)}
+body::before{content:'';position:fixed;top:5%;left:5%;width:420px;height:420px;background:radial-gradient(circle,rgba(160,100,255,.15) 0%,transparent 70%);pointer-events:none;z-index:0;border-radius:50%;filter:blur(8px)}
+.glass{background:rgba(255,255,255,.1);backdrop-filter:blur(32px) saturate(1.8);-webkit-backdrop-filter:blur(32px) saturate(1.8);border:1px solid rgba(255,255,255,.2);box-shadow:0 8px 40px rgba(100,60,200,.2),inset 0 1px 0 rgba(255,255,255,.15)}
+header{position:sticky;top:0;z-index:100;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.08);backdrop-filter:blur(40px);border-bottom:1px solid rgba(255,255,255,.12)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,#a87ee0,#d478c0);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px}
+.logo-text{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:rgba(255,255,255,.92)}
+.logo-text span{color:#c8a0f0}
+.back-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:8px 18px;border-radius:50px;font-size:13px;text-decoration:none;transition:all .2s}
+.back-btn:hover{background:rgba(255,255,255,.18);color:#fff}
+.wrap{max-width:840px;margin:0 auto;padding:2.5rem 1.5rem 4rem;position:relative;z-index:1}
+.page-hero{text-align:center;margin-bottom:2.5rem}
+.page-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(155,126,200,.2);border:1px solid rgba(200,160,240,.3);border-radius:50px;padding:5px 16px;font-size:12px;color:#d4aaff;font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:rgba(255,255,255,.95);margin-bottom:.6rem}
+.page-title em{font-style:italic;color:#e0a0d8}
+.page-desc{font-size:15px;color:rgba(255,255,255,.55);line-height:1.7;font-weight:300;max-width:520px;margin:0 auto}
+.tests-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2rem}
+@media(max-width:700px){.tests-grid{grid-template-columns:1fr}}
+.test-card{border-radius:24px;padding:1.6rem;cursor:pointer;transition:all .25s;text-align:left}
+.test-card:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(100,60,200,.3)}
+.tc-icon{font-size:32px;margin-bottom:.8rem;display:block}
+.tc-badge{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#c8a0f0;margin-bottom:.4rem}
+.tc-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:rgba(255,255,255,.92);margin-bottom:.4rem}
+.tc-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:.8rem}
+.tc-pills{display:flex;gap:6px;flex-wrap:wrap}
+.tc-pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:3px 10px;font-size:11px;color:rgba(255,255,255,.55)}
+.test-area{display:none}
+.progress-wrap{margin-bottom:2rem}
+.progress-label{display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.5);margin-bottom:8px}
+.progress-bar-bg{height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,#a87ee0,#d478c0);border-radius:3px;transition:width .4s ease}
+.question-card{border-radius:24px;padding:2rem;margin-bottom:1.2rem}
+.q-number{font-size:12px;color:rgba(200,160,240,.7);font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
+.q-text{font-size:17px;color:rgba(255,255,255,.92);line-height:1.55;margin-bottom:1.4rem;font-weight:400}
+.options-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(max-width:500px){.options-grid{grid-template-columns:1fr}}
+.option-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:14px 16px;cursor:pointer;text-align:left;transition:all .2s;display:flex;align-items:flex-start;gap:10px;font-family:'DM Sans',sans-serif}
+.option-btn:hover{background:rgba(155,126,200,.2);border-color:rgba(200,160,240,.4)}
+.option-btn.selected{background:rgba(155,126,200,.3);border-color:rgba(200,160,240,.7);box-shadow:0 0 0 2px rgba(155,126,200,.2)}
+.option-dot{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.3);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.option-btn.selected .option-dot{background:linear-gradient(135deg,#a87ee0,#d478c0);border-color:transparent}
+.option-btn.selected .option-dot::after{content:'✓';color:#fff;font-size:11px;font-weight:700}
+.option-score{font-size:11px;color:rgba(200,160,240,.7);margin-bottom:2px;font-weight:500}
+.option-label{font-size:13px;color:rgba(255,255,255,.8);line-height:1.4}
+.dual-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:580px){.dual-options{grid-template-columns:1fr}}
+.dual-group label{font-size:12px;color:rgba(200,160,240,.7);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;display:block}
+.dual-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+@media(max-width:580px){.dual-opts{grid-template-columns:repeat(2,1fr)}}
+.dual-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 6px;cursor:pointer;text-align:center;transition:all .2s;font-family:'DM Sans',sans-serif}
+.dual-btn:hover{background:rgba(155,126,200,.2);border-color:rgba(200,160,240,.4)}
+.dual-btn.selected{background:rgba(155,126,200,.3);border-color:rgba(200,160,240,.7)}
+.dual-btn-label{font-size:11px;color:rgba(255,255,255,.7);margin-top:2px}
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem}
+.btn-nav{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);padding:10px 24px;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
+.btn-nav:hover{background:rgba(255,255,255,.18)}
+.btn-nav:disabled{opacity:.3;cursor:not-allowed}
+.btn-primary-nav{background:linear-gradient(135deg,rgba(155,126,200,.9),rgba(196,120,184,.9));border:1px solid rgba(255,255,255,.25);color:#fff;padding:10px 28px;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;box-shadow:0 4px 16px rgba(155,126,200,.35)}
+.btn-primary-nav:hover{opacity:.9;transform:translateY(-1px)}
+.q-counter{font-size:13px;color:rgba(255,255,255,.4)}
+.result-emoji{font-size:72px;margin-bottom:1rem;display:block;animation:bounceIn .6s cubic-bezier(.34,1.56,.64,1)}
+@keyframes bounceIn{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}
+.result-score-wrap{margin:1.5rem 0;display:flex;justify-content:center}
+.result-score-circle{width:120px;height:120px;border-radius:50%;border:2px solid rgba(200,160,240,.4);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.score-num{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:500;color:rgba(255,255,255,.95);line-height:1}
+.score-label{font-size:11px;color:rgba(255,255,255,.5);margin-top:4px}
+.result-level{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:rgba(255,255,255,.92);margin-bottom:.8rem}
+.result-desc{font-size:15px;color:rgba(255,255,255,.6);line-height:1.7;font-weight:300;max-width:500px;margin:0 auto 2rem}
+.result-bars{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:2rem 0}
+.result-bar-item{text-align:center}
+.result-bar-bg{height:60px;background:rgba(255,255,255,.08);border-radius:8px;position:relative;overflow:hidden;margin-bottom:6px}
+.result-bar-fill{position:absolute;bottom:0;left:0;right:0;border-radius:8px;transition:height 1s cubic-bezier(.34,1.56,.64,1)}
+.result-bar-label{font-size:11px;color:rgba(255,255,255,.5)}
+.result-note{background:rgba(155,126,200,.12);border:1px solid rgba(200,160,240,.2);border-radius:16px;padding:1.2rem 1.5rem;font-size:13px;color:rgba(255,255,255,.6);line-height:1.65;text-align:left;margin-bottom:1rem}
+.result-note strong{color:rgba(255,255,255,.85)}
+.btn-restart{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);padding:11px 28px;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;margin-right:10px}
+.btn-restart:hover{background:rgba(255,255,255,.18)}
+.btn-expert{background:linear-gradient(135deg,rgba(155,126,200,.9),rgba(196,120,184,.9));border:1px solid rgba(255,255,255,.25);color:#fff;padding:11px 28px;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block;transition:all .2s;box-shadow:0 4px 16px rgba(155,126,200,.35)}
+.btn-expert:hover{opacity:.9;transform:translateY(-1px)}
+.fade-in{animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.hidden{display:none!important}
 </style>
 </head>
 <body>
-
 <header>
   <a href="index.html" class="logo">
     <div class="logo-icon">🌿</div>
@@ -379,268 +99,219 @@ header {
   </a>
   <a href="index.html" class="back-btn">← Ana Sayfa</a>
 </header>
-
 <div class="wrap">
-
-  <!-- HERO -->
-  <div class="test-hero" id="testHero">
-    <div class="test-badge">🧠 Psikolojik Değerlendirme</div>
-    <h1 class="test-title">Beck <em>Anksiyete</em> Ölçeği</h1>
-    <p class="test-desc">Son bir hafta içinde kendinizi nasıl hissettiniz? 21 kısa soruyla kaygı düzeyinizi keşfedin. Sadece 3-4 dakika sürer.</p>
-    <div class="test-info-row">
-      <div class="test-info-pill">⏱ ~3-4 dakika</div>
-      <div class="test-info-pill">❓ 21 soru</div>
-      <div class="test-info-pill">🔒 Gizli & güvenli</div>
+  <div id="selectPage">
+    <div class="page-hero">
+      <div class="page-badge">🧠 Psikolojik Değerlendirme</div>
+      <h1 class="page-title">Psikolojik <em>Testler</em></h1>
+      <p class="page-desc">Kendinizi daha iyi tanımak için bilimsel temelli ölçekler. Sonuçlar klinik tanı değil, yalnızca bilgilendirme amaçlıdır.</p>
     </div>
-    <button class="btn-primary-nav" onclick="startTest()" style="font-size:15px;padding:13px 36px;">Teste Başla →</button>
-  </div>
-
-  <!-- PROGRESS -->
-  <div class="progress-wrap" id="progressWrap" style="display:none;">
-    <div class="progress-label">
-      <span id="progressText">Soru 1 / 21</span>
-      <span id="progressPct">0%</span>
+    <div class="tests-grid">
+      <div class="test-card glass" onclick="startBeck()">
+        <span class="tc-icon">😰</span>
+        <div class="tc-badge">Beck Ölçeği</div>
+        <div class="tc-title">Anksiyete (Kaygı) Testi</div>
+        <div class="tc-desc">Son bir haftada yaşadığınız kaygı belirtilerini değerlendirin.</div>
+        <div class="tc-pills"><span class="tc-pill">⏱ 3 dk</span><span class="tc-pill">❓ 21 soru</span></div>
+      </div>
+      <div class="test-card glass" onclick="startLiebowitz()">
+        <span class="tc-icon">👥</span>
+        <div class="tc-badge">Liebowitz Ölçeği</div>
+        <div class="tc-title">Sosyal Fobi Testi</div>
+        <div class="tc-desc">Sosyal durumlarda kaygı ve kaçınma davranışlarınızı ölçün.</div>
+        <div class="tc-pills"><span class="tc-pill">⏱ 5 dk</span><span class="tc-pill">❓ 24 soru</span></div>
+      </div>
+      <div class="test-card glass" onclick="startDepresyon()">
+        <span class="tc-icon">🌧</span>
+        <div class="tc-badge">ICD-10 Envanteri</div>
+        <div class="tc-title">Depresyon Testi</div>
+        <div class="tc-desc">Son iki haftada kendinizi nasıl hissettiniz? 10 soruyla keşfedin.</div>
+        <div class="tc-pills"><span class="tc-pill">⏱ 3 dk</span><span class="tc-pill">❓ 10 soru</span></div>
+      </div>
     </div>
-    <div class="progress-bar-bg">
-      <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+  </div>
+  <div id="testArea" class="test-area">
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span id="progressText">Soru 1</span>
+        <span id="progressPct">0%</span>
+      </div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+    </div>
+    <div id="questionArea"></div>
+    <div class="nav-row" id="navRow">
+      <button class="btn-nav" id="prevBtn" onclick="prevQ()" disabled>← Geri</button>
+      <span class="q-counter" id="qCounter"></span>
+      <button class="btn-primary-nav" id="nextBtn" onclick="nextQ()">İleri →</button>
     </div>
   </div>
-
-  <!-- QUESTION -->
-  <div id="questionArea" style="display:none;"></div>
-
-  <!-- NAV -->
-  <div class="nav-row" id="navRow" style="display:none;">
-    <button class="btn-nav" id="prevBtn" onclick="prevQ()" disabled>← Geri</button>
-    <span class="q-counter" id="qCounter"></span>
-    <button class="btn-primary-nav" id="nextBtn" onclick="nextQ()">İleri →</button>
-  </div>
-
-  <!-- RESULT -->
-  <div class="result-section glass" id="resultSection" style="display:none;border-radius:28px;padding:2.5rem 2rem;">
-  </div>
-
+  <div id="resultArea" class="hidden glass" style="border-radius:28px;padding:2.5rem 2rem;text-align:center"></div>
 </div>
-
 <script>
-const questions = [
-  'Bedeninizin herhangi bir yerinde uyuşma veya karıncalanma',
-  'Sıcak / ateş basmaları',
-  'Bacaklarda halsizlik, titreme',
-  'Gevşeyememe',
-  'Çok kötü şeyler olacak korkusu',
-  'Baş dönmesi veya sersemlik',
-  'Kalp çarpıntısı',
-  'Dengeyi kaybetme duygusu',
-  'Dehşete kapılma',
-  'Sinirlilik',
-  'Boğuluyormuş gibi olma duygusu',
-  'Ellerde titreme',
-  'Titreklik',
-  'Kontrolü kaybetme korkusu',
-  'Nefes almada güçlük',
-  'Ölüm korkusu',
-  'Korkuya kapılma',
-  'Midede hazımsızlık ya da rahatsızlık hissi',
-  'Baygınlık',
-  'Yüzün kızarması',
-  'Terleme (sıcaklığa bağlı olmayan)'
-];
+// ── DATA ──────────────────────────────────────────────────────────────────
+var beckQs = ['Bedeninizin herhangi bir yerinde uyuşma veya karıncalanma','Sıcak / ateş basmaları','Bacaklarda halsizlik, titreme','Gevşeyememe','Çok kötü şeyler olacak korkusu','Baş dönmesi veya sersemlik','Kalp çarpıntısı','Dengeyi kaybetme duygusu','Dehşete kapılma','Sinirlilik','Boğuluyormuş gibi olma duygusu','Ellerde titreme','Titreklik','Kontrolü kaybetme korkusu','Nefes almada güçlük','Ölüm korkusu','Korkuya kapılma','Midede hazımsızlık ya da rahatsızlık hissi','Baygınlık','Yüzün kızarması','Terleme (sıcaklığa bağlı olmayan)'];
+var beckOpts = [{label:'Hiç',sub:'Beni hiç etkilemedi',score:0,emoji:'😶'},{label:'Hafif',sub:'Biraz etkiledi',score:1,emoji:'😐'},{label:'Orta',sub:'Oldukça etkiledi',score:2,emoji:'😟'},{label:'Ciddi',sub:'Çok fazla etkiledi',score:3,emoji:'😰'}];
 
-const opts = [
-  { label: 'Hiç', sub: 'Beni etkilemedi', score: 0 },
-  { label: 'Hafif', sub: 'Pek etkilemedi', score: 1 },
-  { label: 'Orta', sub: 'Hoş değildi ama katlanabildim', score: 2 },
-  { label: 'Ciddi', sub: 'Dayanmakta çok zorlandım', score: 3 }
-];
+var liebQs = ['Önceden hazırlanmaksızın bir toplantıda kalkıp konuşmak','Seyirci önünde hareket, gösteri ya da konuşma yapmak','Dikkatleri üzerinde toplamak','Romantik veya cinsel bir ilişki kurmak amacıyla birisiyle tanışmaya çalışmak','Bir gruba önceden hazırlanmış sözlü bilgi sunmak','Başkaları içerdeyken bir odaya girmek','Kendisinden daha yetkili biriyle konuşmak','Satın aldığı bir malı ödediği parayı geri almak üzere mağazaya iade etmek','Çok iyi tanımadığı birisine fikir ayrılığı veya hoşnutsuzluğun ifade edilmesi','Gözlendiği sırada çalışmak','Çok iyi tanımadığı bir kişiyle yüz yüze konuşmak','Bir eğlenceye gitmek','Çok iyi tanımadığı birisinin gözlerinin içine doğrudan bakmak','Yetenek, beceri ya da bilginin sınanması','Gözlendiği sırada yazı yazmak','Çok iyi tanımadığı bir kişiyle telefonla konuşmak','Umumi yerlerde yemek yemek','Evde misafir ağırlamak','Küçük bir grup faaliyetine katılmak','Umumi yerlerde bir şeyler içmek','Umumi telefonları kullanmak','Yabancılarla konuşmak','Satış elemanının yoğun baskısına karşı koymak','Umumi tuvalette idrar yapmak'];
+var liebOpts = [{label:'Hiç',score:1},{label:'Hafif',score:2},{label:'Orta',score:3},{label:'Ciddi',score:4}];
 
-const emojis = ['😶', '😐', '😟', '😰'];
+var depQs = ['Kendinizi kederli veya üzgün hissettiniz mi?','Günlük faaliyetlerinize olan ilginizi kaybettiniz mi?','Enerjinizde ve gücünüzde eksilme hissettiniz mi?','Kendinize olan güveninizin azaldığını hissettiniz mi?','Suçluluk duydunuz ya da vicdan azabı yaşadınız mı?','Hayatın yaşamaya değmediğini düşündünüz mü?','Dikkatinizi toplamakta güçlük çektiniz mi?','Kendinizi yerinizde duramayacak kadar huzursuz hissettiniz mi?','Geceleri uyumakta güçlük çektiniz mi?','İştahınızda belirgin bir değişim (azalma veya artma) yaşadınız mı?'];
+var depOpts = [{label:'Hiçbir zaman',score:0,emoji:'😶'},{label:'Bazen',score:1,emoji:'🙂'},{label:'Yarısından azında',score:2,emoji:'😐'},{label:'Yarısından çoğunda',score:3,emoji:'😟'},{label:'Çoğu zaman',score:4,emoji:'😢'},{label:'Her zaman',score:5,emoji:'😞'}];
 
-let answers = new Array(21).fill(null);
-let current = 0;
+// ── STATE ─────────────────────────────────────────────────────────────────
+var mode = null, current = 0, answers = [], totalQs = 0;
 
-function startTest() {
-  document.getElementById('testHero').style.display = 'none';
-  document.getElementById('progressWrap').style.display = 'block';
-  document.getElementById('navRow').style.display = 'flex';
-  renderQ();
+function startBeck() { mode='beck'; totalQs=beckQs.length; answers=new Array(totalQs).fill(null); current=0; showTestArea(); renderQ(); }
+function startLiebowitz() { mode='lieb'; totalQs=liebQs.length; answers=Array.from({length:totalQs},function(){return{kaygi:null,kacinma:null};}); current=0; showTestArea(); renderQ(); }
+function startDepresyon() { mode='dep'; totalQs=depQs.length; answers=new Array(totalQs).fill(null); current=0; showTestArea(); renderQ(); }
+
+function showTestArea() {
+  document.getElementById('selectPage').style.display='none';
+  document.getElementById('testArea').style.display='block';
+  document.getElementById('resultArea').classList.add('hidden');
 }
 
 function renderQ() {
-  const area = document.getElementById('questionArea');
-  area.style.display = 'block';
-  const q = questions[current];
-  const selected = answers[current];
-
-  area.innerHTML = `
-    <div class="question-card glass fade-in">
-      <div class="q-number">Soru ${current + 1} / 21</div>
-      <div class="q-text">${q}</div>
-      <div class="options-grid">
-        ${opts.map((o, i) => `
-          <button class="option-btn ${selected === i ? 'selected' : ''}" onclick="selectOpt(${i})">
-            <div class="option-dot"></div>
-            <div>
-              <div class="option-score">${emojis[i]} ${o.label}</div>
-              <div class="option-label">${o.sub}</div>
-            </div>
-          </button>
-        `).join('')}
-      </div>
-    </div>
-  `;
-
-  // Progress
-  const pct = Math.round((current / 21) * 100);
-  document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressText').textContent = `Soru ${current + 1} / 21`;
-  document.getElementById('progressPct').textContent = pct + '%';
-
-  // Buttons
-  document.getElementById('prevBtn').disabled = current === 0;
-  document.getElementById('qCounter').textContent = `${current + 1} / 21`;
-  const nextBtn = document.getElementById('nextBtn');
-  if (current === 20) {
-    nextBtn.textContent = 'Sonuçları Gör ✨';
-  } else {
-    nextBtn.textContent = 'İleri →';
-  }
+  var area=document.getElementById('questionArea');
+  var pct=Math.round((current/totalQs)*100);
+  document.getElementById('progressFill').style.width=pct+'%';
+  document.getElementById('progressText').textContent='Soru '+(current+1)+' / '+totalQs;
+  document.getElementById('progressPct').textContent=pct+'%';
+  document.getElementById('prevBtn').disabled=current===0;
+  document.getElementById('qCounter').textContent=(current+1)+' / '+totalQs;
+  document.getElementById('nextBtn').textContent=current===totalQs-1?'Sonuçları Gör ✨':'İleri →';
+  if(mode==='beck') renderBeckQ(area);
+  else if(mode==='lieb') renderLiebQ(area);
+  else renderDepQ(area);
 }
 
-function selectOpt(i) {
-  answers[current] = i;
-  renderQ();
+function renderBeckQ(area) {
+  var q=beckQs[current]; var sel=answers[current];
+  area.innerHTML='<div class="question-card glass fade-in"><div class="q-number">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-text">'+q+'</div><div class="options-grid">'+
+    beckOpts.map(function(o,i){return '<button class="option-btn '+(sel===i?'selected':'')+'" onclick="selectBeck('+i+')"><div class="option-dot"></div><div><div class="option-score">'+o.emoji+' '+o.label+'</div><div class="option-label">'+o.sub+'</div></div></button>';}).join('')+
+    '</div></div>';
 }
 
-function nextQ() {
-  if (answers[current] === null) {
-    const card = document.querySelector('.question-card');
-    card.style.border = '1px solid rgba(255,100,100,0.5)';
-    card.style.boxShadow = '0 0 0 3px rgba(255,100,100,0.15)';
-    setTimeout(() => {
-      card.style.border = '1px solid rgba(255,255,255,0.2)';
-      card.style.boxShadow = '0 8px 40px rgba(100,60,200,0.2), inset 0 1px 0 rgba(255,255,255,0.15)';
-    }, 600);
+function renderLiebQ(area) {
+  var q=liebQs[current]; var sel=answers[current];
+  area.innerHTML='<div class="question-card glass fade-in"><div class="q-number">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-text">'+q+'</div><div class="dual-options">'+
+    '<div class="dual-group"><label>😰 Kaygı düzeyim</label><div class="dual-opts">'+
+    liebOpts.map(function(o,i){return '<button class="dual-btn '+(sel&&sel.kaygi===i?'selected':'')+'" onclick="selectLiebK('+i+')"><span class="dual-btn-label">'+o.label+'</span></button>';}).join('')+
+    '</div></div><div class="dual-group"><label>🚶 Kaçınma düzeyim</label><div class="dual-opts">'+
+    liebOpts.map(function(o,i){return '<button class="dual-btn '+(sel&&sel.kacinma===i?'selected':'')+'" onclick="selectLiebC('+i+')"><span class="dual-btn-label">'+o.label+'</span></button>';}).join('')+
+    '</div></div></div></div>';
+}
+
+function renderDepQ(area) {
+  var q=depQs[current]; var sel=answers[current];
+  area.innerHTML='<div class="question-card glass fade-in"><div class="q-number">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-text">Son iki hafta boyunca...<br><span style="color:rgba(200,160,240,.9)">'+q+'</span></div><div style="display:flex;flex-direction:column;gap:8px">'+
+    depOpts.map(function(o,i){return '<button class="option-btn '+(sel===i?'selected':'')+'" onclick="selectDep('+i+')" style="align-items:center"><div class="option-dot"></div><span style="font-size:18px;margin-right:8px">'+o.emoji+'</span><span style="font-size:14px;color:rgba(255,255,255,.85)">'+o.label+'</span></button>';}).join('')+
+    '</div></div>';
+}
+
+function selectBeck(i){answers[current]=i;renderQ();}
+function selectLiebK(i){if(!answers[current])answers[current]={kaygi:null,kacinma:null};answers[current].kaygi=i;renderQ();}
+function selectLiebC(i){if(!answers[current])answers[current]={kaygi:null,kacinma:null};answers[current].kacinma=i;renderQ();}
+function selectDep(i){answers[current]=i;renderQ();}
+
+function isAnswered(){
+  if(mode==='beck'||mode==='dep') return answers[current]!==null;
+  return answers[current]&&answers[current].kaygi!==null&&answers[current].kacinma!==null;
+}
+
+function nextQ(){
+  if(!isAnswered()){
+    var card=document.querySelector('.question-card');
+    card.style.border='1px solid rgba(255,100,100,.5)';
+    setTimeout(function(){card.style.border='1px solid rgba(255,255,255,.2)';},600);
     return;
   }
-  if (current < 20) {
-    current++;
-    renderQ();
-  } else {
-    showResult();
-  }
+  if(current<totalQs-1){current++;renderQ();}
+  else{showResult();}
+}
+function prevQ(){if(current>0){current--;renderQ();}}
+
+function showResult(){
+  document.getElementById('progressFill').style.width='100%';
+  document.getElementById('progressPct').textContent='100%';
+  document.getElementById('testArea').style.display='none';
+  document.getElementById('resultArea').classList.remove('hidden');
+  if(mode==='beck') showBeckResult();
+  else if(mode==='lieb') showLiebResult();
+  else showDepResult();
 }
 
-function prevQ() {
-  if (current > 0) { current--; renderQ(); }
+function resultHTML(emoji,level,color,total,max,desc,note,bars,extra){
+  var barHTML='<div class="result-bars" style="grid-template-columns:repeat('+bars.length+',1fr)">'+
+    bars.map(function(b,i){return '<div class="result-bar-item"><div class="result-bar-bg"><div class="result-bar-fill" id="rb'+i+'" style="height:0%;background:'+b.color+'"></div></div><div class="result-bar-label">'+b.label+'<br><small style="color:rgba(255,255,255,.4)">'+b.val+'/'+b.max+'</small></div></div>';}).join('')+'</div>';
+  return '<span class="result-emoji">'+emoji+'</span><div class="result-level">'+level+'</div>'+
+    '<div class="result-score-wrap"><div class="result-score-circle" style="background:linear-gradient(135deg,'+color+',rgba(155,126,200,.2))"><div class="score-num">'+total+'</div><div class="score-label">/ '+max+' puan</div></div></div>'+
+    '<p class="result-desc">'+desc+'</p>'+barHTML+
+    '<div class="result-note">ℹ️ <strong>Ne anlama geliyor?</strong> '+note+'</div>'+
+    (extra||'')+
+    '<div class="result-note" style="background:rgba(255,200,100,.08);border-color:rgba(255,200,100,.2)">⚠️ <strong>Önemli Not:</strong> Bu test klinik bir tanı aracı değildir. Kesin değerlendirme için bir uzman psikologla görüşün.</div>'+
+    '<div style="margin-top:1.5rem"><button class="btn-restart" onclick="goBack()">← Testlere Dön</button><a href="index.html#seans" class="btn-expert">Uzmanla Görüş →</a></div>';
 }
 
-function showResult() {
-  document.getElementById('progressFill').style.width = '100%';
-  document.getElementById('progressPct').textContent = '100%';
-  document.getElementById('questionArea').style.display = 'none';
-  document.getElementById('navRow').style.display = 'none';
-
-  const total = answers.reduce((s, a) => s + (a !== null ? opts[a].score : 0), 0);
-
-  let emoji, level, color, desc, note;
-
-  if (total <= 7) {
-    emoji = '🌸'; level = 'Minimal Kaygı'; color = 'rgba(100,200,120,0.5)';
-    desc = 'Harika! Kaygı belirtileriniz oldukça düşük düzeyde. Bu hafta genel olarak iyi hissettiniz gibi görünüyor.';
-    note = '<strong>Ne anlama geliyor?</strong> 0-7 puan aralığı minimal kaygıya işaret eder. Bu, günlük yaşamınızın kaygıdan büyük ölçüde bağımsız olduğunu gösterir.';
-  } else if (total <= 15) {
-    emoji = '🌤'; level = 'Hafif Kaygı'; color = 'rgba(200,200,100,0.5)';
-    desc = 'Bazı kaygı belirtileri yaşıyor olabilirsiniz. Bu oldukça yaygın ve yönetilebilir bir durum.';
-    note = '<strong>Ne anlama geliyor?</strong> 8-15 puan hafif kaygıya işaret eder. Stres yönetimi teknikleri ve düzenli uyku-egzersiz rutinleri faydalı olabilir.';
-  } else if (total <= 25) {
-    emoji = '🌧'; level = 'Orta Düzey Kaygı'; color = 'rgba(200,150,80,0.5)';
-    desc = 'Orta düzeyde kaygı belirtileri yaşıyorsunuz. Bir uzmanla konuşmak faydalı olabilir.';
-    note = '<strong>Ne anlama geliyor?</strong> 16-25 puan orta düzey kaygıya işaret eder. Bir psikolog desteği, bu süreci çok daha kolay yönetmenize yardımcı olabilir.';
-  } else {
-    emoji = '⛈'; level = 'Şiddetli Kaygı'; color = 'rgba(200,100,100,0.5)';
-    desc = 'Yoğun kaygı belirtileri yaşıyorsunuz. Lütfen bir uzmandan destek almayı düşünün.';
-    note = '<strong>Ne anlama geliyor?</strong> 26+ puan şiddetli kaygıya işaret eder. Bu tür belirtiler günlük yaşamı önemli ölçüde etkileyebilir. Bir uzman psikolog ile görüşmenizi önemle tavsiye ederiz.';
-  }
-
-  const cats = [
-    { name: 'Bedensel', qs: [0,1,2,5,6,7,11,12,17,18,19,20] },
-    { name: 'Bilişsel', qs: [3,4,8,9,13,15,16] },
-    { name: 'Panik', qs: [10,14] }
-  ];
-
-  const resultSection = document.getElementById('resultSection');
-  resultSection.style.display = 'block';
-  resultSection.innerHTML = `
-    <span class="result-emoji">${emoji}</span>
-    <div class="result-level">${level}</div>
-    <div class="result-score-wrap">
-      <div class="result-score-circle" style="background:linear-gradient(135deg,${color},rgba(155,126,200,0.2))">
-        <div class="score-num">${total}</div>
-        <div class="score-label">/ 63 puan</div>
-      </div>
-    </div>
-    <p class="result-desc">${desc}</p>
-
-    <div class="result-bars">
-      <div class="result-bar-item">
-        <div class="result-bar-bg">
-          <div class="result-bar-fill" id="bar0" style="height:0%;background:linear-gradient(to top,#a87ee0,#d478c0)"></div>
-        </div>
-        <div class="result-bar-label">Bedensel</div>
-      </div>
-      <div class="result-bar-item">
-        <div class="result-bar-bg">
-          <div class="result-bar-fill" id="bar1" style="height:0%;background:linear-gradient(to top,#7896d4,#a87ee0)"></div>
-        </div>
-        <div class="result-bar-label">Bilişsel</div>
-      </div>
-      <div class="result-bar-item">
-        <div class="result-bar-bg">
-          <div class="result-bar-fill" id="bar2" style="height:0%;background:linear-gradient(to top,#d478c0,#e0a0d8)"></div>
-        </div>
-        <div class="result-bar-label">Panik</div>
-      </div>
-      <div class="result-bar-item">
-        <div class="result-bar-bg">
-          <div class="result-bar-fill" id="bar3" style="height:0%;background:linear-gradient(to top,#e0c068,#a87ee0)"></div>
-        </div>
-        <div class="result-bar-label">Toplam</div>
-      </div>
-    </div>
-
-    <div class="result-note">ℹ️ ${note}</div>
-    <div class="result-note" style="background:rgba(255,200,100,0.08);border-color:rgba(255,200,100,0.2);">
-      ⚠️ <strong>Önemli Not:</strong> Bu test klinik bir tanı aracı değildir. Sonuçlar yalnızca bilgilendirme amaçlıdır. Kesin değerlendirme için lütfen bir uzman psikologla görüşün.
-    </div>
-
-    <div>
-      <button class="btn-restart" onclick="restart()">🔄 Tekrar Yap</button>
-      <a href="index.html#seans" class="btn-expert">Uzmanla Görüş →</a>
-    </div>
-  `;
-
-  // Animate bars
-  setTimeout(() => {
-    const scores = cats.map(c => c.qs.reduce((s, qi) => s + (answers[qi] !== null ? opts[answers[qi]].score : 0), 0));
-    const maxes = [36, 21, 6];
-    scores.forEach((s, i) => {
-      document.getElementById('bar' + i).style.height = Math.round((s / maxes[i]) * 100) + '%';
-    });
-    document.getElementById('bar3').style.height = Math.round((total / 63) * 100) + '%';
-  }, 300);
-
-  resultSection.scrollIntoView({ behavior: 'smooth' });
+function showBeckResult(){
+  var total=answers.reduce(function(s,a){return s+(a!==null?beckOpts[a].score:0);},0);
+  var emoji,level,color,desc,note;
+  if(total<=7){emoji='🌸';level='Minimal Kaygı';color='rgba(100,200,120,.4)';desc='Harika! Kaygı belirtileriniz oldukça düşük.';note='0–7 puan minimal kaygıya işaret eder.';}
+  else if(total<=15){emoji='🌤';level='Hafif Kaygı';color='rgba(220,200,80,.4)';desc='Bazı kaygı belirtileri yaşıyorsunuz. Yönetilebilir bir durum.';note='8–15 puan hafif kaygıya işaret eder.';}
+  else if(total<=25){emoji='🌧';level='Orta Düzey Kaygı';color='rgba(220,150,60,.4)';desc='Orta düzeyde kaygı var. Bir uzmanla konuşmak faydalı olabilir.';note='16–25 puan orta düzey kaygıya işaret eder.';}
+  else{emoji='⛈';level='Şiddetli Kaygı';color='rgba(220,80,80,.4)';desc='Yoğun kaygı belirtileri yaşıyorsunuz. Lütfen destek alın.';note='26+ puan şiddetli kaygıya işaret eder.';}
+  var cats=[[0,1,2,5,6,7,11,12,17,18,19,20],[3,4,8,9,13,15,16],[10,14]];
+  var maxes=[36,21,6];
+  var bars=cats.map(function(c,i){
+    var s=c.reduce(function(sum,qi){return sum+(answers[qi]!==null?beckOpts[answers[qi]].score:0);},0);
+    return {label:['Bedensel','Bilişsel','Panik'][i],val:s,max:maxes[i],color:'linear-gradient(to top,#a87ee0,#d478c0)'};
+  });
+  bars.push({label:'Toplam',val:total,max:63,color:'linear-gradient(to top,#e0c068,#a87ee0)'});
+  document.getElementById('resultArea').innerHTML=resultHTML(emoji,level,color,total,63,desc,note,bars,'');
+  setTimeout(function(){bars.forEach(function(b,i){document.getElementById('rb'+i).style.height=Math.round((b.val/b.max)*100)+'%';});},300);
+  document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
 }
 
-function restart() {
-  answers = new Array(21).fill(null);
-  current = 0;
-  document.getElementById('resultSection').style.display = 'none';
-  document.getElementById('progressWrap').style.display = 'block';
-  document.getElementById('navRow').style.display = 'flex';
-  renderQ();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+function showLiebResult(){
+  var kt=0,ct=0;
+  answers.forEach(function(a){if(a){kt+=a.kaygi!==null?liebOpts[a.kaygi].score:0;ct+=a.kacinma!==null?liebOpts[a.kacinma].score:0;}});
+  var total=kt+ct;
+  var emoji,level,color,desc,note;
+  if(total<=48){emoji='🌸';level='Minimal Sosyal Kaygı';color='rgba(100,200,120,.4)';desc='Sosyal durumlarda düşük kaygı yaşıyorsunuz.';note='48 ve altı minimal sosyal kaygıya işaret eder.';}
+  else if(total<=72){emoji='🌤';level='Hafif Sosyal Kaygı';color='rgba(220,200,80,.4)';desc='Bazı sosyal durumlarda hafif kaygı mevcut.';note='49–72 puan hafif sosyal kaygıya işaret eder.';}
+  else if(total<=96){emoji='🌧';level='Orta Düzey Sosyal Fobi';color='rgba(220,150,60,.4)';desc='Belirgin kaygı ve kaçınma var. Destek faydalı olabilir.';note='73–96 puan orta düzey sosyal fobiye işaret eder.';}
+  else{emoji='⛈';level='Şiddetli Sosyal Fobi';color='rgba(220,80,80,.4)';desc='Yoğun sosyal kaygı var. Lütfen destek alın.';note='97+ puan şiddetli sosyal fobiye işaret eder.';}
+  var bars=[{label:'Kaygı',val:kt,max:96,color:'linear-gradient(to top,#7896d4,#a87ee0)'},{label:'Kaçınma',val:ct,max:96,color:'linear-gradient(to top,#d478c0,#e0a0d8)'},{label:'Toplam',val:total,max:192,color:'linear-gradient(to top,#e0c068,#a87ee0)'}];
+  document.getElementById('resultArea').innerHTML=resultHTML(emoji,level,color,total,192,desc,note,bars,'');
+  setTimeout(function(){bars.forEach(function(b,i){document.getElementById('rb'+i).style.height=Math.round((b.val/b.max)*100)+'%';});},300);
+  document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
+}
+
+function showDepResult(){
+  var total=answers.reduce(function(s,a){return s+(a!==null?depOpts[a].score:0);},0);
+  var emoji,level,color,desc,note,extra='';
+  if(total<=6){emoji='🌸';level='Depresyon Belirtisi Yok';color='rgba(100,200,120,.4)';desc='Son iki haftada depresyon belirtisi gözükmüyor.';note='0–6 puan depresyon belirtisi olmadığına işaret eder.';}
+  else if(total<=19){emoji='🌤';level='Hafif Depresyon';color='rgba(220,200,80,.4)';desc='Hafif depresif belirtiler mevcut. Yönetilebilir bir durum.';note='7–19 puan hafif depresyona işaret eder.';}
+  else if(total<=34){emoji='🌧';level='Orta Düzey Depresyon';color='rgba(220,150,60,.4)';desc='Orta düzey depresif belirtiler var. Uzman desteği faydalı olur.';note='20–34 puan orta düzey depresyona işaret eder.';}
+  else{emoji='⛈';level='Şiddetli Depresyon';color='rgba(220,80,80,.4)';desc='Yoğun depresif belirtiler var. Lütfen en kısa sürede destek alın.';note='35+ puan şiddetli depresyona işaret eder.';}
+  if(total>=25) extra='<div class="result-note" style="background:rgba(255,100,100,.1);border-color:rgba(255,100,100,.3)">🆘 Kendinize zarar verme düşünceleri yaşıyorsanız lütfen <strong>182 Psikolojik Destek Hattı</strong>\'nı arayın.</div>';
+  var cats=[[0,1,4,5],[2,7,8,9],[3,6]];
+  var maxes=[20,20,10];
+  var bars=cats.map(function(c,i){
+    var s=c.reduce(function(sum,qi){return sum+(answers[qi]!==null?depOpts[answers[qi]].score:0);},0);
+    return {label:['Duygu','Fiziksel','Bilişsel'][i],val:s,max:maxes[i],color:'linear-gradient(to top,#7896d4,#d478c0)'};
+  });
+  bars.push({label:'Toplam',val:total,max:50,color:'linear-gradient(to top,#e0c068,#a87ee0)'});
+  document.getElementById('resultArea').innerHTML=resultHTML(emoji,level,color,total,50,desc,note,bars,extra);
+  setTimeout(function(){bars.forEach(function(b,i){document.getElementById('rb'+i).style.height=Math.round((b.val/b.max)*100)+'%';});},300);
+  document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
+}
+
+function goBack(){
+  document.getElementById('selectPage').style.display='block';
+  document.getElementById('testArea').style.display='none';
+  document.getElementById('resultArea').classList.add('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 </script>
 </body>
