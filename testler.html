@@ -106,7 +106,7 @@ header{position:sticky;top:0;z-index:100;padding:0 2rem;height:64px;display:flex
       <h1 class="page-title">Psikolojik <em>Testler</em></h1>
       <p class="page-desc">Kendinizi daha iyi tanımak için bilimsel temelli ölçekler. Sonuçlar klinik tanı değil, yalnızca bilgilendirme amaçlıdır.</p>
     </div>
-    <div class="tests-grid">
+    <div class="tests-grid" style="grid-template-columns:repeat(2,1fr)">
       <div class="test-card glass" onclick="startBeck()">
         <span class="tc-icon">😰</span>
         <div class="tc-badge">Beck Ölçeği</div>
@@ -127,6 +127,13 @@ header{position:sticky;top:0;z-index:100;padding:0 2rem;height:64px;display:flex
         <div class="tc-title">Depresyon Testi</div>
         <div class="tc-desc">Son iki haftada kendinizi nasıl hissettiniz? 10 soruyla keşfedin.</div>
         <div class="tc-pills"><span class="tc-pill">⏱ 3 dk</span><span class="tc-pill">❓ 10 soru</span></div>
+      </div>
+      <div class="test-card glass" onclick="startBeckDep()">
+        <span class="tc-icon">😔</span>
+        <div class="tc-badge">Beck Depresyon</div>
+        <div class="tc-title">Beck Depresyon Envanteri</div>
+        <div class="tc-desc">Geçen hafta içinde kendinizi nasıl hissettiniz? 21 soruyla depresyon düzeyinizi ölçün.</div>
+        <div class="tc-pills"><span class="tc-pill">⏱ 5 dk</span><span class="tc-pill">❓ 21 soru</span></div>
       </div>
     </div>
   </div>
@@ -158,12 +165,68 @@ var liebOpts = [{label:'Hiç',score:1},{label:'Hafif',score:2},{label:'Orta',sco
 var depQs = ['Kendinizi kederli veya üzgün hissettiniz mi?','Günlük faaliyetlerinize olan ilginizi kaybettiniz mi?','Enerjinizde ve gücünüzde eksilme hissettiniz mi?','Kendinize olan güveninizin azaldığını hissettiniz mi?','Suçluluk duydunuz ya da vicdan azabı yaşadınız mı?','Hayatın yaşamaya değmediğini düşündünüz mü?','Dikkatinizi toplamakta güçlük çektiniz mi?','Kendinizi yerinizde duramayacak kadar huzursuz hissettiniz mi?','Geceleri uyumakta güçlük çektiniz mi?','İştahınızda belirgin bir değişim (azalma veya artma) yaşadınız mı?'];
 var depOpts = [{label:'Hiçbir zaman',score:0,emoji:'😶'},{label:'Bazen',score:1,emoji:'🙂'},{label:'Yarısından azında',score:2,emoji:'😐'},{label:'Yarısından çoğunda',score:3,emoji:'😟'},{label:'Çoğu zaman',score:4,emoji:'😢'},{label:'Her zaman',score:5,emoji:'😞'}];
 
+var beckDepQs = [
+  ['Kendimi üzüntülü ve sıkıntılı hissetmiyorum.','Kendimi üzüntülü ve sıkıntılı hissediyorum.','Hep üzüntülü ve sıkıntılıyım. Bundan kurtulamıyorum.','O kadar üzüntülü ve sıkıntılıyım ki artık dayanamıyorum.'],
+  ['Gelecek hakkında mutsuz ve karamsar değilim.','Gelecek hakkında karamsarım.','Gelecekten beklediğim hiçbir şey yok.','Geleceğim hakkında umutsuzum ve sanki hiçbir şey düzelmeyecekmiş gibi geliyor.'],
+  ['Kendimi başarısız bir insan olarak görmüyorum.','Çevremdeki birçok kişiden daha çok başarısızlıklarım olmuş gibi hissediyorum.','Geçmişe baktığımda başarısızlıklarla dolu olduğunu görüyorum.','Kendimi tümüyle başarısız biri olarak görüyorum.'],
+  ['Birçok şeyden eskisi kadar zevk alıyorum.','Eskiden olduğu gibi her şeyden hoşlanmıyorum.','Artık hiçbir şey bana tam anlamıyla zevk vermiyor.','Her şeyden sıkılıyorum.'],
+  ['Kendimi herhangi bir şekilde suçlu hissetmiyorum.','Kendimi zaman zaman suçlu hissediyorum.','Çoğu zaman kendimi suçlu hissediyorum.','Kendimi her zaman suçlu hissediyorum.'],
+  ['Bana cezalandırılmışım gibi gelmiyor.','Cezalandırılabileceğimi hissediyorum.','Cezalandırılmayı bekliyorum.','Cezalandırıldığımı hissediyorum.'],
+  ['Kendimden memnunum.','Kendi kendimden pek memnun değilim.','Kendime çok kızıyorum.','Kendimden nefret ediyorum.'],
+  ['Başkalarından daha kötü olduğumu sanmıyorum.','Zayıf yanlarım veya hatalarım için kendi kendimi eleştiririm.','Hatalarımdan dolayı kendimi kabahatli bulurum.','Her aksilik karşısında kendimi hatalı bulurum.'],
+  ['Kendimi öldürmek gibi düşüncelerim yok.','Zaman zaman kendimi öldürmeyi düşündüğüm olur fakat yapmıyorum.','Kendimi öldürmek isterdim.','Fırsatını bulsam kendimi öldürürdüm.'],
+  ['Her zamankinden fazla içimden ağlamak gelmiyor.','Zaman zaman içimden ağlamak geliyor.','Çoğu zaman ağlıyorum.','Eskiden ağlayabilirdim şimdi istesem de ağlayamıyorum.'],
+  ['Şimdi her zaman olduğumdan daha sinirli değilim.','Eskisine kıyasla daha kolay kızıyor ya da sinirleniyorum.','Şimdi hep sinirliyim.','Bir zamanlar beni sinirlendiren şeyler şimdi hiç sinirlendirmiyor.'],
+  ['Başkaları ile görüşmek, konuşmak isteğimi kaybetmedim.','Başkaları ile eskisinden daha az konuşmak, görüşmek istiyorum.','Başkaları ile konuşma ve görüşme isteğimi büyük ölçüde kaybettim.','Hiç kimseyle konuşmak görüşmek istemiyorum.'],
+  ['Eskiden olduğu gibi kolay karar verebiliyorum.','Eskiden olduğu kadar kolay karar veremiyorum.','Karar verirken eskisine kıyasla çok güçlük çekiyorum.','Artık hiç karar veremiyorum.'],
+  ['Aynada kendime baktığımda değişiklik görmüyorum.','Daha yaşlanmış ve çirkinleşmişim gibi geliyor.','Görünüşümün çok değiştiğini ve çirkinleştiğimi hissediyorum.','Kendimi çok çirkin buluyorum.'],
+  ['Eskisi kadar iyi çalışabiliyorum.','Bir şeyler yapabilmek için gayret göstermem gerekiyor.','Herhangi bir şeyi yapabilmek için kendimi çok zorlamam gerekiyor.','Hiçbir şey yapamıyorum.'],
+  ['Her zamanki gibi iyi uyuyabiliyorum.','Eskiden olduğu gibi iyi uyuyamıyorum.','Her zamankinden 1-2 saat daha erken uyanıyorum ve tekrar uyuyamıyorum.','Her zamankinden çok daha erken uyanıyor ve tekrar uyuyamıyorum.'],
+  ['Her zamankinden daha çabuk yorulmuyorum.','Her zamankinden daha çabuk yoruluyorum.','Yaptığım her şey beni yoruyor.','Kendimi hemen hiçbir şey yapamayacak kadar yorgun hissediyorum.'],
+  ['İştahım her zamanki gibi.','İştahım her zamanki kadar iyi değil.','İştahım çok azaldı.','Artık hiç iştahım yok.'],
+  ['Son zamanlarda kilo vermedim.','İki kilodan fazla kilo verdim.','Dört kilodan fazla kilo verdim.','Altı kilodan fazla kilo vermeye çalışıyorum.'],
+  ['Sağlığım beni fazla endişelendirmiyor.','Ağrı, sancı gibi rahatsızlıklar beni endişelendiriyor.','Sağlığım beni endişelendirdiği için başka şeyleri düşünmek zorlaşıyor.','Sağlığım hakkında o kadar endişeliyim ki başka hiçbir şey düşünemiyorum.'],
+  ['Son zamanlarda cinsel konulara olan ilgimde bir değişme fark etmedim.','Cinsel konularla eskisinden daha az ilgiliyim.','Cinsel konularla şimdi çok daha az ilgiliyim.','Cinsel konulara olan ilgimi tamamen kaybettim.']
+];
+
+function startBeckDep() { mode='beckdep'; totalQs=beckDepQs.length; answers=new Array(totalQs).fill(null); current=0; showTestArea(); renderQ(); }
+
+function renderBeckDepQ(area) {
+  var opts=beckDepQs[current]; var sel=answers[current];
+  var emojis=['😊','😐','😟','😢'];
+  area.innerHTML='<div class="question-card glass fade-in"><div class="q-number">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-text" style="font-size:14px;color:rgba(255,255,255,.6);margin-bottom:1.2rem">Geçen hafta içinde kendinizi nasıl hissettiniz?</div><div style="display:flex;flex-direction:column;gap:8px">'+
+    opts.map(function(o,i){return '<button class="option-btn '+(sel===i?'selected':'')+'" onclick="selectBeckDep('+i+')" style="align-items:center"><div class="option-dot"></div><span style="font-size:16px;margin-right:8px;flex-shrink:0">'+emojis[i]+'</span><span style="font-size:13.5px;color:rgba(255,255,255,.85);text-align:left">'+o+'</span></button>';}).join('')+
+    '</div></div>';
+}
+
+function selectBeckDep(i){answers[current]=i;renderQ();}
+
+function showBeckDepResult(){
+  var total=answers.reduce(function(s,a){return s+(a!==null?a:0);},0);
+  var emoji,level,color,desc,note,extra='';
+  if(total<=9){emoji='🌸';level='Minimal Depresyon';color='rgba(100,200,120,.4)';desc='Depresyon belirtileri minimal düzeyde. Genel olarak iyi hissediyorsunuz.';note='0–9 puan minimal depresyona işaret eder.';}
+  else if(total<=16){emoji='🌤';level='Hafif Depresyon';color='rgba(220,200,80,.4)';desc='Hafif depresif belirtiler mevcut. Kendinize iyi bakmanız önemli.';note='10–16 puan hafif depresyona işaret eder.';}
+  else if(total<=29){emoji='🌧';level='Orta Depresyon';color='rgba(220,150,60,.4)';desc='Orta düzeyde depresif belirtiler var. Bir uzmanla görüşmenizi öneririz.';note='17–29 puan orta düzey depresyona işaret eder.';}
+  else{emoji='⛈';level='Şiddetli Depresyon';color='rgba(220,80,80,.4)';desc='Yoğun depresif belirtiler yaşıyorsunuz. Lütfen en kısa sürede destek alın.';note='30–63 puan şiddetli depresyona işaret eder.';}
+  if(answers[8]!==null&&answers[8]>=2) extra='<div class="result-note" style="background:rgba(255,100,100,.1);border-color:rgba(255,100,100,.3)">🆘 Kendinize zarar verme düşünceleri yaşıyorsanız lütfen <strong>182 Psikolojik Destek Hattı</strong>\'nı arayın.</div>';
+  var cats=[[0,1,2,3],[4,5,6,7,8],[9,10,11,12],[13,14,15,16,17,18,19,20]];
+  var catNames=['Duygu','Öz Değer','Davranış','Fiziksel'];
+  var bars=cats.map(function(c,i){
+    var s=c.reduce(function(sum,qi){return sum+(answers[qi]!==null?answers[qi]:0);},0);
+    return {label:catNames[i],val:s,max:c.length*3,color:'linear-gradient(to top,#7896d4,#d478c0)'};
+  });
+  document.getElementById('resultArea').innerHTML=resultHTML(emoji,level,color,total,63,desc,note,bars,extra);
+  setTimeout(function(){bars.forEach(function(b,i){document.getElementById('rb'+i).style.height=Math.round((b.val/b.max)*100)+'%';});},300);
+  document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
+}
+
 // ── STATE ─────────────────────────────────────────────────────────────────
 var mode = null, current = 0, answers = [], totalQs = 0;
 
 function startBeck() { mode='beck'; totalQs=beckQs.length; answers=new Array(totalQs).fill(null); current=0; showTestArea(); renderQ(); }
 function startLiebowitz() { mode='lieb'; totalQs=liebQs.length; answers=Array.from({length:totalQs},function(){return{kaygi:null,kacinma:null};}); current=0; showTestArea(); renderQ(); }
 function startDepresyon() { mode='dep'; totalQs=depQs.length; answers=new Array(totalQs).fill(null); current=0; showTestArea(); renderQ(); }
+function startBeckDep() { mode='beckdep'; totalQs=beckDepQs.length; answers=new Array(totalQs).fill(null); current=0; showTestArea(); renderQ(); }
 
 function showTestArea() {
   document.getElementById('selectPage').style.display='none';
@@ -182,6 +245,7 @@ function renderQ() {
   document.getElementById('nextBtn').textContent=current===totalQs-1?'Sonuçları Gör ✨':'İleri →';
   if(mode==='beck') renderBeckQ(area);
   else if(mode==='lieb') renderLiebQ(area);
+  else if(mode==='beckdep') renderBeckDepQ(area);
   else renderDepQ(area);
 }
 
@@ -215,7 +279,7 @@ function selectLiebC(i){if(!answers[current])answers[current]={kaygi:null,kacinm
 function selectDep(i){answers[current]=i;renderQ();}
 
 function isAnswered(){
-  if(mode==='beck'||mode==='dep') return answers[current]!==null;
+  if(mode==='beck'||mode==='dep'||mode==='beckdep') return answers[current]!==null;
   return answers[current]&&answers[current].kaygi!==null&&answers[current].kacinma!==null;
 }
 
@@ -238,6 +302,7 @@ function showResult(){
   document.getElementById('resultArea').classList.remove('hidden');
   if(mode==='beck') showBeckResult();
   else if(mode==='lieb') showLiebResult();
+  else if(mode==='beckdep') showBeckDepResult();
   else showDepResult();
 }
 
