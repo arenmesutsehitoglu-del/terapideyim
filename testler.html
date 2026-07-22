@@ -3,273 +3,270 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Testler | Terapideyim</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Psikolojik Testler | Terapideyim</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',sans-serif;background:radial-gradient(ellipse 80% 60% at 15% 10%,rgba(140,100,220,.55) 0%,transparent 55%),radial-gradient(ellipse 60% 70% at 85% 20%,rgba(190,100,200,.45) 0%,transparent 50%),radial-gradient(ellipse 70% 60% at 50% 80%,rgba(100,140,220,.4) 0%,transparent 55%),linear-gradient(145deg,#1a0e2e 0%,#1e1040 30%,#0e1a38 60%,#1a0e2e 100%);min-height:100vh;color:rgba(255,255,255,.9)}
-body::before{content:'';position:fixed;top:5%;left:5%;width:420px;height:420px;background:radial-gradient(circle,rgba(160,100,255,.15) 0%,transparent 70%);pointer-events:none;z-index:0;border-radius:50%;filter:blur(8px)}
-.glass{background:rgba(255,255,255,.1);backdrop-filter:blur(32px) saturate(1.8);-webkit-backdrop-filter:blur(32px) saturate(1.8);border:1px solid rgba(255,255,255,.2);box-shadow:0 8px 40px rgba(100,60,200,.2),inset 0 1px 0 rgba(255,255,255,.15)}
-header{position:sticky;top:0;z-index:100;padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.08);backdrop-filter:blur(40px);border-bottom:1px solid rgba(255,255,255,.12)}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,#a87ee0,#d478c0);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px}
-.logo-text{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:rgba(255,255,255,.92)}
-.logo-text span{color:#c8a0f0}
-.back-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:8px 18px;border-radius:50px;font-size:13px;text-decoration:none;transition:all .2s}
-.back-btn:hover{background:rgba(255,255,255,.18);color:#fff}
-.wrap{max-width:840px;margin:0 auto;padding:2.5rem 1.5rem 4rem;position:relative;z-index:1}
-.page-hero{text-align:center;margin-bottom:2.5rem}
-.page-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(155,126,200,.2);border:1px solid rgba(200,160,240,.3);border-radius:50px;padding:5px 16px;font-size:12px;color:#d4aaff;font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin-bottom:1rem}
-.page-title{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:rgba(255,255,255,.95);margin-bottom:.6rem}
-.page-title em{font-style:italic;color:#e0a0d8}
-.page-desc{font-size:15px;color:rgba(255,255,255,.55);line-height:1.7;font-weight:300;max-width:520px;margin:0 auto}
-.tests-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2rem}
-@media(max-width:700px){.tests-grid{grid-template-columns:1fr}}
-.test-card{border-radius:24px;padding:1.6rem;cursor:pointer;transition:all .25s;text-align:left}
-.test-card:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(100,60,200,.3)}
-.tc-icon{font-size:32px;margin-bottom:.8rem;display:block}
-.tc-badge{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#c8a0f0;margin-bottom:.4rem}
-.tc-title{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:rgba(255,255,255,.92);margin-bottom:.4rem}
-.tc-desc{font-size:13px;color:rgba(255,255,255,.5);line-height:1.6;margin-bottom:.8rem}
+:root{
+  --ink:#0F1923;--ink-mid:#2D3B4E;--ink-soft:#5C6E82;--ink-ghost:#8FA0B0;
+  --accent:#2D6A9F;--accent-light:#E8F1F8;--sage:#4A7C6F;--sage-light:#E8F4F1;
+  --border:#E4EAF0;--surface:#FFFFFF;--bg:#F7F9FB;--bg2:#EFF3F7;
+  --green:#22C55E;--yellow:#F59E0B;--orange:#F97316;--red:#EF4444;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
+
+header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1100px;margin:0 auto;padding:0 2rem;height:72px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-mark{width:38px;height:38px;background:var(--accent);border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Playfair Display',serif;font-size:16px;font-weight:600}
+.logo-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:500;color:var(--ink)}
+.logo-sub{font-size:11px;color:var(--ink-ghost);letter-spacing:.06em;text-transform:uppercase;margin-top:-1px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-soft);text-decoration:none;font-weight:500;border:1.5px solid var(--border);padding:8px 16px;border-radius:8px;transition:all 0.2s}
+.back-btn:hover{border-color:var(--accent);color:var(--accent)}
+
+.wrap{max-width:800px;margin:0 auto;padding:3rem 1.5rem 5rem}
+
+/* SELECT PAGE */
+.page-hero{text-align:center;margin-bottom:3rem}
+.page-eyebrow{display:inline-flex;align-items:center;gap:6px;background:var(--accent-light);color:var(--accent);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 14px;border-radius:6px;margin-bottom:1rem}
+.page-title{font-family:'Playfair Display',serif;font-size:38px;font-weight:500;color:var(--ink);line-height:1.15;margin-bottom:.6rem;letter-spacing:-.01em}
+.page-title em{font-style:italic;color:var(--accent)}
+.page-sub{font-size:15px;color:var(--ink-soft);font-weight:300;line-height:1.7;max-width:480px;margin:0 auto}
+
+.tests-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:2rem}
+@media(max-width:600px){.tests-grid{grid-template-columns:1fr}}
+.test-card{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:1.6rem;cursor:pointer;transition:all .22s;text-align:left}
+.test-card:hover{border-color:var(--accent);box-shadow:0 8px 32px rgba(45,106,159,0.1);transform:translateY(-2px)}
+.tc-icon{font-size:28px;margin-bottom:.8rem;display:block}
+.tc-eyebrow{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.3rem}
+.tc-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:500;color:var(--ink);margin-bottom:.4rem}
+.tc-desc{font-size:13px;color:var(--ink-soft);line-height:1.55;margin-bottom:.9rem;font-weight:300}
 .tc-pills{display:flex;gap:6px;flex-wrap:wrap}
-.tc-pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:3px 10px;font-size:11px;color:rgba(255,255,255,.55)}
-.test-area{display:none}
+.tc-pill{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-size:11px;color:var(--ink-ghost);font-weight:500}
+
+/* PROGRESS */
 .progress-wrap{margin-bottom:2rem}
-.progress-label{display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.5);margin-bottom:8px}
-.progress-bar-bg{height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden}
-.progress-bar-fill{height:100%;background:linear-gradient(90deg,#a87ee0,#d478c0);border-radius:3px;transition:width .4s ease}
-.question-card{border-radius:24px;padding:2rem;margin-bottom:1.2rem}
-.q-number{font-size:12px;color:rgba(200,160,240,.7);font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.5rem}
-.q-text{font-size:17px;color:rgba(255,255,255,.92);line-height:1.55;margin-bottom:1.4rem;font-weight:400}
-.options-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-@media(max-width:500px){.options-grid{grid-template-columns:1fr}}
-.option-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:14px 16px;cursor:pointer;text-align:left;transition:all .2s;display:flex;align-items:flex-start;gap:10px;font-family:'DM Sans',sans-serif}
-.option-btn:hover{background:rgba(155,126,200,.2);border-color:rgba(200,160,240,.4)}
-.option-btn.selected{background:rgba(155,126,200,.3);border-color:rgba(200,160,240,.7);box-shadow:0 0 0 2px rgba(155,126,200,.2)}
-.option-dot{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.3);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.option-btn.selected .option-dot{background:linear-gradient(135deg,#a87ee0,#d478c0);border-color:transparent}
-.option-btn.selected .option-dot::after{content:'✓';color:#fff;font-size:11px;font-weight:700}
-.option-score{font-size:11px;color:rgba(200,160,240,.7);margin-bottom:2px;font-weight:500}
-.option-label{font-size:13px;color:rgba(255,255,255,.8);line-height:1.4}
-.dual-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:580px){.dual-options{grid-template-columns:1fr}}
-.dual-group label{font-size:12px;color:rgba(200,160,240,.7);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px;display:block}
-.dual-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-@media(max-width:580px){.dual-opts{grid-template-columns:repeat(2,1fr)}}
-.dual-btn{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:10px 6px;cursor:pointer;text-align:center;transition:all .2s;font-family:'DM Sans',sans-serif}
-.dual-btn:hover{background:rgba(155,126,200,.2);border-color:rgba(200,160,240,.4)}
-.dual-btn.selected{background:rgba(155,126,200,.3);border-color:rgba(200,160,240,.7)}
-.dual-btn-label{font-size:11px;color:rgba(255,255,255,.7);margin-top:2px}
-.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:1.5rem}
-.btn-nav{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);padding:10px 24px;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s}
-.btn-nav:hover{background:rgba(255,255,255,.18)}
-.btn-nav:disabled{opacity:.3;cursor:not-allowed}
-.btn-primary-nav{background:linear-gradient(135deg,rgba(155,126,200,.9),rgba(196,120,184,.9));border:1px solid rgba(255,255,255,.25);color:#fff;padding:10px 28px;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;box-shadow:0 4px 16px rgba(155,126,200,.35)}
-.btn-primary-nav:hover{opacity:.9;transform:translateY(-1px)}
-.q-counter{font-size:13px;color:rgba(255,255,255,.4)}
-.result-emoji{font-size:72px;margin-bottom:1rem;display:block;animation:bounceIn .6s cubic-bezier(.34,1.56,.64,1)}
+.progress-top{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-ghost);margin-bottom:8px;font-weight:500}
+.progress-track{height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:var(--accent);border-radius:3px;transition:width .4s ease}
+
+/* QUESTION */
+.question-card{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:2rem;margin-bottom:1.2rem}
+.q-eyebrow{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.q-text{font-size:17px;color:var(--ink);line-height:1.5;margin-bottom:1.5rem;font-weight:400}
+.q-hint{font-size:12.5px;color:var(--ink-ghost);margin-bottom:1rem;font-weight:300}
+
+.opts-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:480px){.opts-grid{grid-template-columns:1fr}}
+.opt-btn{background:var(--bg);border:1.5px solid var(--border);border-radius:11px;padding:13px 16px;cursor:pointer;text-align:left;transition:all .18s;display:flex;align-items:center;gap:10px;font-family:'Inter',sans-serif}
+.opt-btn:hover{border-color:var(--accent);background:var(--accent-light)}
+.opt-btn.selected{border-color:var(--accent);background:var(--accent-light)}
+.opt-check{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .18s;background:var(--surface)}
+.opt-btn.selected .opt-check{background:var(--accent);border-color:var(--accent)}
+.opt-btn.selected .opt-check::after{content:'✓';color:#fff;font-size:10px;font-weight:700}
+.opt-emoji{font-size:16px;flex-shrink:0}
+.opt-label-wrap{}
+.opt-title{font-size:13px;color:var(--ink);font-weight:500}
+.opt-sub{font-size:11.5px;color:var(--ink-ghost);margin-top:1px}
+
+.opts-col{display:flex;flex-direction:column;gap:7px}
+.opt-btn-wide{background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:11px 14px;cursor:pointer;text-align:left;transition:all .18s;display:flex;align-items:center;gap:10px;font-family:'Inter',sans-serif}
+.opt-btn-wide:hover{border-color:var(--accent);background:var(--accent-light)}
+.opt-btn-wide.selected{border-color:var(--accent);background:var(--accent-light)}
+
+.dual-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:540px){.dual-wrap{grid-template-columns:1fr}}
+.dual-group{}
+.dual-lbl{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;display:block}
+.dual-opts{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.dual-btn{background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:9px 4px;cursor:pointer;text-align:center;font-family:'Inter',sans-serif;font-size:11.5px;font-weight:500;color:var(--ink-soft);transition:all .18s}
+.dual-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light)}
+.dual-btn.selected{border-color:var(--accent);background:var(--accent-light);color:var(--accent);font-weight:600}
+
+/* NAV */
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:1.2rem}
+.btn-back-q{background:var(--surface);border:1.5px solid var(--border);color:var(--ink-mid);padding:10px 22px;border-radius:8px;font-size:13.5px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .18s}
+.btn-back-q:hover{border-color:var(--ink-soft)}
+.btn-back-q:disabled{opacity:.3;cursor:not-allowed}
+.btn-next-q{background:var(--accent);color:#fff;border:none;padding:10px 26px;border-radius:8px;font-size:13.5px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:background .18s,transform .15s}
+.btn-next-q:hover{background:#245a8a;transform:translateY(-1px)}
+.q-counter{font-size:12.5px;color:var(--ink-ghost);font-weight:500}
+
+/* RESULT */
+.result-box{background:var(--surface);border:1.5px solid var(--border);border-radius:20px;padding:2.5rem;text-align:center}
+.result-emoji{font-size:60px;margin-bottom:1rem;display:block;animation:bounceIn .6s cubic-bezier(.34,1.56,.64,1)}
 @keyframes bounceIn{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}
-.result-score-wrap{margin:1.5rem 0;display:flex;justify-content:center}
-.result-score-circle{width:120px;height:120px;border-radius:50%;border:2px solid rgba(200,160,240,.4);display:flex;flex-direction:column;align-items:center;justify-content:center}
-.score-num{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:500;color:rgba(255,255,255,.95);line-height:1}
-.score-label{font-size:11px;color:rgba(255,255,255,.5);margin-top:4px}
-.result-level{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;color:rgba(255,255,255,.92);margin-bottom:.8rem}
-.result-desc{font-size:15px;color:rgba(255,255,255,.6);line-height:1.7;font-weight:300;max-width:500px;margin:0 auto 2rem}
-.result-bars{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:2rem 0}
-.result-bar-item{text-align:center}
-.result-bar-bg{height:60px;background:rgba(255,255,255,.08);border-radius:8px;position:relative;overflow:hidden;margin-bottom:6px}
-.result-bar-fill{position:absolute;bottom:0;left:0;right:0;border-radius:8px;transition:height 1s cubic-bezier(.34,1.56,.64,1)}
-.result-bar-label{font-size:11px;color:rgba(255,255,255,.5)}
-.result-note{background:rgba(155,126,200,.12);border:1px solid rgba(200,160,240,.2);border-radius:16px;padding:1.2rem 1.5rem;font-size:13px;color:rgba(255,255,255,.6);line-height:1.65;text-align:left;margin-bottom:1rem}
-.result-note strong{color:rgba(255,255,255,.85)}
-.btn-restart{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);padding:11px 28px;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;margin-right:10px}
-.btn-restart:hover{background:rgba(255,255,255,.18)}
-.btn-expert{background:linear-gradient(135deg,rgba(155,126,200,.9),rgba(196,120,184,.9));border:1px solid rgba(255,255,255,.25);color:#fff;padding:11px 28px;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block;transition:all .2s;box-shadow:0 4px 16px rgba(155,126,200,.35)}
-.btn-expert:hover{opacity:.9;transform:translateY(-1px)}
-.fade-in{animation:fadeIn .4s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.result-score-ring{width:110px;height:110px;border-radius:50%;margin:1.2rem auto;display:flex;flex-direction:column;align-items:center;justify-content:center;border:3px solid var(--border)}
+.score-num{font-family:'Playfair Display',serif;font-size:38px;font-weight:600;color:var(--ink);line-height:1}
+.score-max{font-size:11px;color:var(--ink-ghost);margin-top:3px}
+.result-level{font-family:'Playfair Display',serif;font-size:24px;font-weight:500;color:var(--ink);margin-bottom:.6rem}
+.result-desc{font-size:14.5px;color:var(--ink-soft);line-height:1.7;max-width:460px;margin:0 auto 1.5rem;font-weight:300}
+
+.result-bars{display:grid;gap:8px;margin:1.5rem 0}
+.rb-item{display:flex;align-items:center;gap:12px}
+.rb-label{font-size:12px;color:var(--ink-soft);font-weight:500;width:90px;text-align:right;flex-shrink:0}
+.rb-track{flex:1;height:8px;background:var(--border);border-radius:4px;overflow:hidden}
+.rb-fill{height:100%;border-radius:4px;transition:width 1s cubic-bezier(.34,1.56,.64,1)}
+.rb-val{font-size:12px;color:var(--ink-ghost);font-weight:500;width:40px;text-align:left;flex-shrink:0}
+
+.result-note{background:var(--accent-light);border:1px solid rgba(45,106,159,0.15);border-radius:10px;padding:12px 16px;font-size:13px;color:var(--ink-mid);line-height:1.6;text-align:left;margin-bottom:10px}
+.result-note strong{color:var(--ink)}
+.result-note.warn{background:#FFF9EC;border-color:rgba(245,158,11,0.2)}
+.result-note.danger{background:#FEF2F2;border-color:rgba(239,68,68,0.2)}
+
+.result-actions{margin-top:1.8rem;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-goback{background:var(--surface);border:1.5px solid var(--border);color:var(--ink-mid);padding:11px 24px;border-radius:8px;font-size:13.5px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:all .18s}
+.btn-goback:hover{border-color:var(--ink-soft)}
+.btn-expert{background:var(--accent);color:#fff;padding:11px 24px;border-radius:8px;font-size:13.5px;font-weight:500;text-decoration:none;display:inline-block;transition:background .18s}
+.btn-expert:hover{background:#245a8a}
+
+.fade-in{animation:fadeIn .35s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .hidden{display:none!important}
 </style>
 </head>
 <body>
 <header>
-  <a href="index.html" class="logo">
-    <div class="logo-icon">🌿</div>
-    <div class="logo-text">Terapideyim<span>.com</span></div>
-  </a>
-  <a href="index.html" class="back-btn">← Ana Sayfa</a>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark">GŞ</div>
+      <div>
+        <div class="logo-name">Gülizar Şehitoğlu</div>
+        <div class="logo-sub">Klinik Psikolog</div>
+      </div>
+    </a>
+    <a href="index.html" class="back-btn">← Ana Sayfa</a>
+  </div>
 </header>
+
 <div class="wrap">
+  <!-- SELECT -->
   <div id="selectPage">
     <div class="page-hero">
-      <div class="page-badge">🧠 Psikolojik Değerlendirme</div>
+      <div class="page-eyebrow">🧠 Değerlendirme Araçları</div>
       <h1 class="page-title">Psikolojik <em>Testler</em></h1>
-      <p class="page-desc">Kendinizi daha iyi tanımak için bilimsel temelli ölçekler. Sonuçlar klinik tanı değil, yalnızca bilgilendirme amaçlıdır.</p>
+      <p class="page-sub">Bilimsel temelli ölçeklerle kendinizi daha iyi tanıyın. Sonuçlar yalnızca bilgilendirme amaçlıdır, klinik tanı değildir.</p>
     </div>
-    <div class="tests-grid" style="grid-template-columns:repeat(2,1fr)">
-      <div class="test-card glass" onclick="startBeck()">
+    <div class="tests-grid">
+      <div class="test-card" onclick="startBeck()">
         <span class="tc-icon">😰</span>
-        <div class="tc-badge">Beck Ölçeği</div>
+        <div class="tc-eyebrow">Beck Ölçeği</div>
         <div class="tc-title">Anksiyete (Kaygı) Testi</div>
         <div class="tc-desc">Son bir haftada yaşadığınız kaygı belirtilerini değerlendirin.</div>
-        <div class="tc-pills"><span class="tc-pill">⏱ 3 dk</span><span class="tc-pill">❓ 21 soru</span></div>
+        <div class="tc-pills"><span class="tc-pill">⏱ 3 dk</span><span class="tc-pill">21 soru</span></div>
       </div>
-      <div class="test-card glass" onclick="startLiebowitz()">
+      <div class="test-card" onclick="startLiebowitz()">
         <span class="tc-icon">👥</span>
-        <div class="tc-badge">Liebowitz Ölçeği</div>
+        <div class="tc-eyebrow">Liebowitz Ölçeği</div>
         <div class="tc-title">Sosyal Fobi Testi</div>
         <div class="tc-desc">Sosyal durumlarda kaygı ve kaçınma davranışlarınızı ölçün.</div>
-        <div class="tc-pills"><span class="tc-pill">⏱ 5 dk</span><span class="tc-pill">❓ 24 soru</span></div>
+        <div class="tc-pills"><span class="tc-pill">⏱ 5 dk</span><span class="tc-pill">24 soru</span></div>
       </div>
-      <div class="test-card glass" onclick="startDepresyon()">
+      <div class="test-card" onclick="startDepresyon()">
         <span class="tc-icon">🌧</span>
-        <div class="tc-badge">ICD-10 Envanteri</div>
+        <div class="tc-eyebrow">ICD-10 Envanteri</div>
         <div class="tc-title">Depresyon Testi</div>
-        <div class="tc-desc">Son iki haftada kendinizi nasıl hissettiniz? 10 soruyla keşfedin.</div>
-        <div class="tc-pills"><span class="tc-pill">⏱ 3 dk</span><span class="tc-pill">❓ 10 soru</span></div>
+        <div class="tc-desc">Son iki haftada kendinizi nasıl hissettiniz?</div>
+        <div class="tc-pills"><span class="tc-pill">⏱ 3 dk</span><span class="tc-pill">10 soru</span></div>
       </div>
-      <div class="test-card glass" onclick="startBeckDep()">
+      <div class="test-card" onclick="startBeckDep()">
         <span class="tc-icon">😔</span>
-        <div class="tc-badge">Beck Depresyon</div>
+        <div class="tc-eyebrow">Beck Depresyon</div>
         <div class="tc-title">Beck Depresyon Envanteri</div>
-        <div class="tc-desc">Geçen hafta içinde kendinizi nasıl hissettiniz? 21 soruyla depresyon düzeyinizi ölçün.</div>
-        <div class="tc-pills"><span class="tc-pill">⏱ 5 dk</span><span class="tc-pill">❓ 21 soru</span></div>
+        <div class="tc-desc">Geçen hafta içinde kendinizi nasıl hissettiniz?</div>
+        <div class="tc-pills"><span class="tc-pill">⏱ 5 dk</span><span class="tc-pill">21 soru</span></div>
       </div>
     </div>
   </div>
-  <div id="testArea" class="test-area">
+
+  <!-- TEST ALANI -->
+  <div id="testArea" style="display:none">
     <div class="progress-wrap">
-      <div class="progress-label">
+      <div class="progress-top">
         <span id="progressText">Soru 1</span>
         <span id="progressPct">0%</span>
       </div>
-      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
     </div>
     <div id="questionArea"></div>
     <div class="nav-row" id="navRow">
-      <button class="btn-nav" id="prevBtn" onclick="prevQ()" disabled>← Geri</button>
+      <button class="btn-back-q" id="prevBtn" onclick="prevQ()" disabled>← Geri</button>
       <span class="q-counter" id="qCounter"></span>
-      <button class="btn-primary-nav" id="nextBtn" onclick="nextQ()">İleri →</button>
+      <button class="btn-next-q" id="nextBtn" onclick="nextQ()">İleri →</button>
     </div>
   </div>
-  <div id="resultArea" class="hidden glass" style="border-radius:28px;padding:2.5rem 2rem;text-align:center"></div>
+
+  <!-- SONUÇ -->
+  <div id="resultArea" class="result-box hidden"></div>
 </div>
+
 <script>
-// ── DATA ──────────────────────────────────────────────────────────────────
-var beckQs = ['Bedeninizin herhangi bir yerinde uyuşma veya karıncalanma','Sıcak / ateş basmaları','Bacaklarda halsizlik, titreme','Gevşeyememe','Çok kötü şeyler olacak korkusu','Baş dönmesi veya sersemlik','Kalp çarpıntısı','Dengeyi kaybetme duygusu','Dehşete kapılma','Sinirlilik','Boğuluyormuş gibi olma duygusu','Ellerde titreme','Titreklik','Kontrolü kaybetme korkusu','Nefes almada güçlük','Ölüm korkusu','Korkuya kapılma','Midede hazımsızlık ya da rahatsızlık hissi','Baygınlık','Yüzün kızarması','Terleme (sıcaklığa bağlı olmayan)'];
-var beckOpts = [{label:'Hiç',sub:'Beni hiç etkilemedi',score:0,emoji:'😶'},{label:'Hafif',sub:'Biraz etkiledi',score:1,emoji:'😐'},{label:'Orta',sub:'Oldukça etkiledi',score:2,emoji:'😟'},{label:'Ciddi',sub:'Çok fazla etkiledi',score:3,emoji:'😰'}];
+var beckQs=['Bedeninizin herhangi bir yerinde uyuşma veya karıncalanma','Sıcak / ateş basmaları','Bacaklarda halsizlik, titreme','Gevşeyememe','Çok kötü şeyler olacak korkusu','Baş dönmesi veya sersemlik','Kalp çarpıntısı','Dengeyi kaybetme duygusu','Dehşete kapılma','Sinirlilik','Boğuluyormuş gibi olma duygusu','Ellerde titreme','Titreklik','Kontrolü kaybetme korkusu','Nefes almada güçlük','Ölüm korkusu','Korkuya kapılma','Midede hazımsızlık ya da rahatsızlık hissi','Baygınlık','Yüzün kızarması','Terleme (sıcaklığa bağlı olmayan)'];
+var beckOpts=[{label:'Hiç',sub:'Beni hiç etkilemedi',score:0,emoji:'😶'},{label:'Hafif',sub:'Biraz etkiledi',score:1,emoji:'😐'},{label:'Orta',sub:'Oldukça etkiledi',score:2,emoji:'😟'},{label:'Ciddi',sub:'Çok fazla etkiledi',score:3,emoji:'😰'}];
 
-var liebQs = ['Önceden hazırlanmaksızın bir toplantıda kalkıp konuşmak','Seyirci önünde hareket, gösteri ya da konuşma yapmak','Dikkatleri üzerinde toplamak','Romantik veya cinsel bir ilişki kurmak amacıyla birisiyle tanışmaya çalışmak','Bir gruba önceden hazırlanmış sözlü bilgi sunmak','Başkaları içerdeyken bir odaya girmek','Kendisinden daha yetkili biriyle konuşmak','Satın aldığı bir malı ödediği parayı geri almak üzere mağazaya iade etmek','Çok iyi tanımadığı birisine fikir ayrılığı veya hoşnutsuzluğun ifade edilmesi','Gözlendiği sırada çalışmak','Çok iyi tanımadığı bir kişiyle yüz yüze konuşmak','Bir eğlenceye gitmek','Çok iyi tanımadığı birisinin gözlerinin içine doğrudan bakmak','Yetenek, beceri ya da bilginin sınanması','Gözlendiği sırada yazı yazmak','Çok iyi tanımadığı bir kişiyle telefonla konuşmak','Umumi yerlerde yemek yemek','Evde misafir ağırlamak','Küçük bir grup faaliyetine katılmak','Umumi yerlerde bir şeyler içmek','Umumi telefonları kullanmak','Yabancılarla konuşmak','Satış elemanının yoğun baskısına karşı koymak','Umumi tuvalette idrar yapmak'];
-var liebOpts = [{label:'Hiç',score:1},{label:'Hafif',score:2},{label:'Orta',score:3},{label:'Ciddi',score:4}];
+var liebQs=['Önceden hazırlanmaksızın bir toplantıda kalkıp konuşmak','Seyirci önünde hareket, gösteri ya da konuşma yapmak','Dikkatleri üzerinde toplamak','Romantik veya cinsel bir ilişki kurmak amacıyla birisiyle tanışmaya çalışmak','Bir gruba önceden hazırlanmış sözlü bilgi sunmak','Başkaları içerdeyken bir odaya girmek','Kendisinden daha yetkili biriyle konuşmak','Satın aldığı bir malı ödediği parayı geri almak üzere mağazaya iade etmek','Çok iyi tanımadığı birisine fikir ayrılığı veya hoşnutsuzluğun ifade edilmesi','Gözlendiği sırada çalışmak','Çok iyi tanımadığı bir kişiyle yüz yüze konuşmak','Bir eğlenceye gitmek','Çok iyi tanımadığı birisinin gözlerinin içine doğrudan bakmak','Yetenek, beceri ya da bilginin sınanması','Gözlendiği sırada yazı yazmak','Çok iyi tanımadığı bir kişiyle telefonla konuşmak','Umumi yerlerde yemek yemek','Evde misafir ağırlamak','Küçük bir grup faaliyetine katılmak','Umumi yerlerde bir şeyler içmek','Umumi telefonları kullanmak','Yabancılarla konuşmak','Satış elemanının yoğun baskısına karşı koymak','Umumi tuvalette idrar yapmak'];
+var liebOpts=[{label:'Hiç',score:1},{label:'Hafif',score:2},{label:'Orta',score:3},{label:'Ciddi',score:4}];
 
-var depQs = ['Kendinizi kederli veya üzgün hissettiniz mi?','Günlük faaliyetlerinize olan ilginizi kaybettiniz mi?','Enerjinizde ve gücünüzde eksilme hissettiniz mi?','Kendinize olan güveninizin azaldığını hissettiniz mi?','Suçluluk duydunuz ya da vicdan azabı yaşadınız mı?','Hayatın yaşamaya değmediğini düşündünüz mü?','Dikkatinizi toplamakta güçlük çektiniz mi?','Kendinizi yerinizde duramayacak kadar huzursuz hissettiniz mi?','Geceleri uyumakta güçlük çektiniz mi?','İştahınızda belirgin bir değişim (azalma veya artma) yaşadınız mı?'];
-var depOpts = [{label:'Hiçbir zaman',score:0,emoji:'😶'},{label:'Bazen',score:1,emoji:'🙂'},{label:'Yarısından azında',score:2,emoji:'😐'},{label:'Yarısından çoğunda',score:3,emoji:'😟'},{label:'Çoğu zaman',score:4,emoji:'😢'},{label:'Her zaman',score:5,emoji:'😞'}];
+var depQs=['Kendinizi kederli veya üzgün hissettiniz mi?','Günlük faaliyetlerinize olan ilginizi kaybettiniz mi?','Enerjinizde ve gücünüzde eksilme hissettiniz mi?','Kendinize olan güveninizin azaldığını hissettiniz mi?','Suçluluk duydunuz ya da vicdan azabı yaşadınız mı?','Hayatın yaşamaya değmediğini düşündünüz mü?','Dikkatinizi toplamakta güçlük çektiniz mi?','Kendinizi yerinizde duramayacak kadar huzursuz hissettiniz mi?','Geceleri uyumakta güçlük çektiniz mi?','İştahınızda belirgin bir değişim yaşadınız mı?'];
+var depOpts=[{label:'Hiçbir zaman',score:0,emoji:'😶'},{label:'Bazen',score:1,emoji:'🙂'},{label:'Yarısından azında',score:2,emoji:'😐'},{label:'Yarısından çoğunda',score:3,emoji:'😟'},{label:'Çoğu zaman',score:4,emoji:'😢'},{label:'Her zaman',score:5,emoji:'😞'}];
 
-var beckDepQs = [
-  ['Kendimi üzüntülü ve sıkıntılı hissetmiyorum.','Kendimi üzüntülü ve sıkıntılı hissediyorum.','Hep üzüntülü ve sıkıntılıyım. Bundan kurtulamıyorum.','O kadar üzüntülü ve sıkıntılıyım ki artık dayanamıyorum.'],
-  ['Gelecek hakkında mutsuz ve karamsar değilim.','Gelecek hakkında karamsarım.','Gelecekten beklediğim hiçbir şey yok.','Geleceğim hakkında umutsuzum ve sanki hiçbir şey düzelmeyecekmiş gibi geliyor.'],
-  ['Kendimi başarısız bir insan olarak görmüyorum.','Çevremdeki birçok kişiden daha çok başarısızlıklarım olmuş gibi hissediyorum.','Geçmişe baktığımda başarısızlıklarla dolu olduğunu görüyorum.','Kendimi tümüyle başarısız biri olarak görüyorum.'],
-  ['Birçok şeyden eskisi kadar zevk alıyorum.','Eskiden olduğu gibi her şeyden hoşlanmıyorum.','Artık hiçbir şey bana tam anlamıyla zevk vermiyor.','Her şeyden sıkılıyorum.'],
-  ['Kendimi herhangi bir şekilde suçlu hissetmiyorum.','Kendimi zaman zaman suçlu hissediyorum.','Çoğu zaman kendimi suçlu hissediyorum.','Kendimi her zaman suçlu hissediyorum.'],
-  ['Bana cezalandırılmışım gibi gelmiyor.','Cezalandırılabileceğimi hissediyorum.','Cezalandırılmayı bekliyorum.','Cezalandırıldığımı hissediyorum.'],
-  ['Kendimden memnunum.','Kendi kendimden pek memnun değilim.','Kendime çok kızıyorum.','Kendimden nefret ediyorum.'],
-  ['Başkalarından daha kötü olduğumu sanmıyorum.','Zayıf yanlarım veya hatalarım için kendi kendimi eleştiririm.','Hatalarımdan dolayı kendimi kabahatli bulurum.','Her aksilik karşısında kendimi hatalı bulurum.'],
-  ['Kendimi öldürmek gibi düşüncelerim yok.','Zaman zaman kendimi öldürmeyi düşündüğüm olur fakat yapmıyorum.','Kendimi öldürmek isterdim.','Fırsatını bulsam kendimi öldürürdüm.'],
-  ['Her zamankinden fazla içimden ağlamak gelmiyor.','Zaman zaman içimden ağlamak geliyor.','Çoğu zaman ağlıyorum.','Eskiden ağlayabilirdim şimdi istesem de ağlayamıyorum.'],
-  ['Şimdi her zaman olduğumdan daha sinirli değilim.','Eskisine kıyasla daha kolay kızıyor ya da sinirleniyorum.','Şimdi hep sinirliyim.','Bir zamanlar beni sinirlendiren şeyler şimdi hiç sinirlendirmiyor.'],
-  ['Başkaları ile görüşmek, konuşmak isteğimi kaybetmedim.','Başkaları ile eskisinden daha az konuşmak, görüşmek istiyorum.','Başkaları ile konuşma ve görüşme isteğimi büyük ölçüde kaybettim.','Hiç kimseyle konuşmak görüşmek istemiyorum.'],
-  ['Eskiden olduğu gibi kolay karar verebiliyorum.','Eskiden olduğu kadar kolay karar veremiyorum.','Karar verirken eskisine kıyasla çok güçlük çekiyorum.','Artık hiç karar veremiyorum.'],
-  ['Aynada kendime baktığımda değişiklik görmüyorum.','Daha yaşlanmış ve çirkinleşmişim gibi geliyor.','Görünüşümün çok değiştiğini ve çirkinleştiğimi hissediyorum.','Kendimi çok çirkin buluyorum.'],
-  ['Eskisi kadar iyi çalışabiliyorum.','Bir şeyler yapabilmek için gayret göstermem gerekiyor.','Herhangi bir şeyi yapabilmek için kendimi çok zorlamam gerekiyor.','Hiçbir şey yapamıyorum.'],
-  ['Her zamanki gibi iyi uyuyabiliyorum.','Eskiden olduğu gibi iyi uyuyamıyorum.','Her zamankinden 1-2 saat daha erken uyanıyorum ve tekrar uyuyamıyorum.','Her zamankinden çok daha erken uyanıyor ve tekrar uyuyamıyorum.'],
-  ['Her zamankinden daha çabuk yorulmuyorum.','Her zamankinden daha çabuk yoruluyorum.','Yaptığım her şey beni yoruyor.','Kendimi hemen hiçbir şey yapamayacak kadar yorgun hissediyorum.'],
-  ['İştahım her zamanki gibi.','İştahım her zamanki kadar iyi değil.','İştahım çok azaldı.','Artık hiç iştahım yok.'],
-  ['Son zamanlarda kilo vermedim.','İki kilodan fazla kilo verdim.','Dört kilodan fazla kilo verdim.','Altı kilodan fazla kilo vermeye çalışıyorum.'],
-  ['Sağlığım beni fazla endişelendirmiyor.','Ağrı, sancı gibi rahatsızlıklar beni endişelendiriyor.','Sağlığım beni endişelendirdiği için başka şeyleri düşünmek zorlaşıyor.','Sağlığım hakkında o kadar endişeliyim ki başka hiçbir şey düşünemiyorum.'],
-  ['Son zamanlarda cinsel konulara olan ilgimde bir değişme fark etmedim.','Cinsel konularla eskisinden daha az ilgiliyim.','Cinsel konularla şimdi çok daha az ilgiliyim.','Cinsel konulara olan ilgimi tamamen kaybettim.']
-];
+var beckDepQs=[['Kendimi üzüntülü ve sıkıntılı hissetmiyorum.','Kendimi üzüntülü ve sıkıntılı hissediyorum.','Hep üzüntülü ve sıkıntılıyım. Bundan kurtulamıyorum.','O kadar üzüntülü ve sıkıntılıyım ki artık dayanamıyorum.'],['Gelecek hakkında mutsuz ve karamsar değilim.','Gelecek hakkında karamsarım.','Gelecekten beklediğim hiçbir şey yok.','Geleceğim hakkında umutsuzum ve sanki hiçbir şey düzelmeyecekmiş gibi geliyor.'],['Kendimi başarısız bir insan olarak görmüyorum.','Çevremdeki birçok kişiden daha çok başarısızlıklarım olmuş gibi hissediyorum.','Geçmişe baktığımda başarısızlıklarla dolu olduğunu görüyorum.','Kendimi tümüyle başarısız biri olarak görüyorum.'],['Birçok şeyden eskisi kadar zevk alıyorum.','Eskiden olduğu gibi her şeyden hoşlanmıyorum.','Artık hiçbir şey bana tam anlamıyla zevk vermiyor.','Her şeyden sıkılıyorum.'],['Kendimi herhangi bir şekilde suçlu hissetmiyorum.','Kendimi zaman zaman suçlu hissediyorum.','Çoğu zaman kendimi suçlu hissediyorum.','Kendimi her zaman suçlu hissediyorum.'],['Bana cezalandırılmışım gibi gelmiyor.','Cezalandırılabileceğimi hissediyorum.','Cezalandırılmayı bekliyorum.','Cezalandırıldığımı hissediyorum.'],['Kendimden memnunum.','Kendi kendimden pek memnun değilim.','Kendime çok kızıyorum.','Kendimden nefret ediyorum.'],['Başkalarından daha kötü olduğumu sanmıyorum.','Zayıf yanlarım veya hatalarım için kendi kendimi eleştiririm.','Hatalarımdan dolayı kendimi kabahatli bulurum.','Her aksilik karşısında kendimi hatalı bulurum.'],['Kendimi öldürmek gibi düşüncelerim yok.','Zaman zaman kendimi öldürmeyi düşündüğüm olur fakat yapmıyorum.','Kendimi öldürmek isterdim.','Fırsatını bulsam kendimi öldürürdüm.'],['Her zamankinden fazla içimden ağlamak gelmiyor.','Zaman zaman içimden ağlamak geliyor.','Çoğu zaman ağlıyorum.','Eskiden ağlayabilirdim şimdi istesem de ağlayamıyorum.'],['Şimdi her zaman olduğumdan daha sinirli değilim.','Eskisine kıyasla daha kolay kızıyor ya da sinirleniyorum.','Şimdi hep sinirliyim.','Bir zamanlar beni sinirlendiren şeyler şimdi hiç sinirlendirmiyor.'],['Başkaları ile görüşmek, konuşmak isteğimi kaybetmedim.','Başkaları ile eskisinden daha az konuşmak, görüşmek istiyorum.','Başkaları ile konuşma ve görüşme isteğimi büyük ölçüde kaybettim.','Hiç kimseyle konuşmak görüşmek istemiyorum.'],['Eskiden olduğu gibi kolay karar verebiliyorum.','Eskiden olduğu kadar kolay karar veremiyorum.','Karar verirken eskisine kıyasla çok güçlük çekiyorum.','Artık hiç karar veremiyorum.'],['Aynada kendime baktığımda değişiklik görmüyorum.','Daha yaşlanmış ve çirkinleşmişim gibi geliyor.','Görünüşümün çok değiştiğini ve çirkinleştiğimi hissediyorum.','Kendimi çok çirkin buluyorum.'],['Eskisi kadar iyi çalışabiliyorum.','Bir şeyler yapabilmek için gayret göstermem gerekiyor.','Herhangi bir şeyi yapabilmek için kendimi çok zorlamam gerekiyor.','Hiçbir şey yapamıyorum.'],['Her zamanki gibi iyi uyuyabiliyorum.','Eskiden olduğu gibi iyi uyuyamıyorum.','Her zamankinden 1-2 saat daha erken uyanıyorum ve tekrar uyuyamıyorum.','Her zamankinden çok daha erken uyanıyor ve tekrar uyuyamıyorum.'],['Her zamankinden daha çabuk yorulmuyorum.','Her zamankinden daha çabuk yoruluyorum.','Yaptığım her şey beni yoruyor.','Kendimi hemen hiçbir şey yapamayacak kadar yorgun hissediyorum.'],['İştahım her zamanki gibi.','İştahım her zamanki kadar iyi değil.','İştahım çok azaldı.','Artık hiç iştahım yok.'],['Son zamanlarda kilo vermedim.','İki kilodan fazla kilo verdim.','Dört kilodan fazla kilo verdim.','Altı kilodan fazla kilo vermeye çalışıyorum.'],['Sağlığım beni fazla endişelendirmiyor.','Ağrı, sancı gibi rahatsızlıklar beni endişelendiriyor.','Sağlığım beni endişelendirdiği için başka şeyleri düşünmek zorlaşıyor.','Sağlığım hakkında o kadar endişeliyim ki başka hiçbir şey düşünemiyorum.'],['Son zamanlarda cinsel konulara olan ilgimde bir değişme fark etmedim.','Cinsel konularla eskisinden daha az ilgiliyim.','Cinsel konularla şimdi çok daha az ilgiliyim.','Cinsel konulara olan ilgimi tamamen kaybettim.']];
 
-function startBeckDep() { mode='beckdep'; totalQs=beckDepQs.length; answers=new Array(totalQs).fill(null); current=0; showTestArea(); renderQ(); }
+var mode=null,current=0,answers=[],totalQs=0;
 
-function renderBeckDepQ(area) {
-  var opts=beckDepQs[current]; var sel=answers[current];
-  var emojis=['😊','😐','😟','😢'];
-  area.innerHTML='<div class="question-card glass fade-in"><div class="q-number">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-text" style="font-size:14px;color:rgba(255,255,255,.6);margin-bottom:1.2rem">Geçen hafta içinde kendinizi nasıl hissettiniz?</div><div style="display:flex;flex-direction:column;gap:8px">'+
-    opts.map(function(o,i){return '<button class="option-btn '+(sel===i?'selected':'')+'" onclick="selectBeckDep('+i+')" style="align-items:center"><div class="option-dot"></div><span style="font-size:16px;margin-right:8px;flex-shrink:0">'+emojis[i]+'</span><span style="font-size:13.5px;color:rgba(255,255,255,.85);text-align:left">'+o+'</span></button>';}).join('')+
-    '</div></div>';
-}
+function startBeck(){mode='beck';totalQs=beckQs.length;answers=new Array(totalQs).fill(null);current=0;showTestArea();renderQ();}
+function startLiebowitz(){mode='lieb';totalQs=liebQs.length;answers=Array.from({length:totalQs},function(){return{kaygi:null,kacinma:null};});current=0;showTestArea();renderQ();}
+function startDepresyon(){mode='dep';totalQs=depQs.length;answers=new Array(totalQs).fill(null);current=0;showTestArea();renderQ();}
+function startBeckDep(){mode='beckdep';totalQs=beckDepQs.length;answers=new Array(totalQs).fill(null);current=0;showTestArea();renderQ();}
 
-function selectBeckDep(i){answers[current]=i;renderQ();}
-
-function showBeckDepResult(){
-  var total=answers.reduce(function(s,a){return s+(a!==null?a:0);},0);
-  var emoji,level,color,desc,note,extra='';
-  if(total<=9){emoji='🌸';level='Minimal Depresyon';color='rgba(100,200,120,.4)';desc='Depresyon belirtileri minimal düzeyde. Genel olarak iyi hissediyorsunuz.';note='0–9 puan minimal depresyona işaret eder.';}
-  else if(total<=16){emoji='🌤';level='Hafif Depresyon';color='rgba(220,200,80,.4)';desc='Hafif depresif belirtiler mevcut. Kendinize iyi bakmanız önemli.';note='10–16 puan hafif depresyona işaret eder.';}
-  else if(total<=29){emoji='🌧';level='Orta Depresyon';color='rgba(220,150,60,.4)';desc='Orta düzeyde depresif belirtiler var. Bir uzmanla görüşmenizi öneririz.';note='17–29 puan orta düzey depresyona işaret eder.';}
-  else{emoji='⛈';level='Şiddetli Depresyon';color='rgba(220,80,80,.4)';desc='Yoğun depresif belirtiler yaşıyorsunuz. Lütfen en kısa sürede destek alın.';note='30–63 puan şiddetli depresyona işaret eder.';}
-  if(answers[8]!==null&&answers[8]>=2) extra='<div class="result-note" style="background:rgba(255,100,100,.1);border-color:rgba(255,100,100,.3)">🆘 Kendinize zarar verme düşünceleri yaşıyorsanız lütfen <strong>182 Psikolojik Destek Hattı</strong>\'nı arayın.</div>';
-  var cats=[[0,1,2,3],[4,5,6,7,8],[9,10,11,12],[13,14,15,16,17,18,19,20]];
-  var catNames=['Duygu','Öz Değer','Davranış','Fiziksel'];
-  var bars=cats.map(function(c,i){
-    var s=c.reduce(function(sum,qi){return sum+(answers[qi]!==null?answers[qi]:0);},0);
-    return {label:catNames[i],val:s,max:c.length*3,color:'linear-gradient(to top,#7896d4,#d478c0)'};
-  });
-  document.getElementById('resultArea').innerHTML=resultHTML(emoji,level,color,total,63,desc,note,bars,extra);
-  setTimeout(function(){bars.forEach(function(b,i){document.getElementById('rb'+i).style.height=Math.round((b.val/b.max)*100)+'%';});},300);
-  document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
-}
-
-// ── STATE ─────────────────────────────────────────────────────────────────
-var mode = null, current = 0, answers = [], totalQs = 0;
-
-function startBeck() { mode='beck'; totalQs=beckQs.length; answers=new Array(totalQs).fill(null); current=0; showTestArea(); renderQ(); }
-function startLiebowitz() { mode='lieb'; totalQs=liebQs.length; answers=Array.from({length:totalQs},function(){return{kaygi:null,kacinma:null};}); current=0; showTestArea(); renderQ(); }
-function startDepresyon() { mode='dep'; totalQs=depQs.length; answers=new Array(totalQs).fill(null); current=0; showTestArea(); renderQ(); }
-function startBeckDep() { mode='beckdep'; totalQs=beckDepQs.length; answers=new Array(totalQs).fill(null); current=0; showTestArea(); renderQ(); }
-
-function showTestArea() {
+function showTestArea(){
   document.getElementById('selectPage').style.display='none';
   document.getElementById('testArea').style.display='block';
   document.getElementById('resultArea').classList.add('hidden');
 }
 
-function renderQ() {
-  var area=document.getElementById('questionArea');
+function renderQ(){
   var pct=Math.round((current/totalQs)*100);
   document.getElementById('progressFill').style.width=pct+'%';
   document.getElementById('progressText').textContent='Soru '+(current+1)+' / '+totalQs;
   document.getElementById('progressPct').textContent=pct+'%';
   document.getElementById('prevBtn').disabled=current===0;
   document.getElementById('qCounter').textContent=(current+1)+' / '+totalQs;
-  document.getElementById('nextBtn').textContent=current===totalQs-1?'Sonuçları Gör ✨':'İleri →';
+  document.getElementById('nextBtn').textContent=current===totalQs-1?'Sonuçları Gör →':'İleri →';
+  var area=document.getElementById('questionArea');
   if(mode==='beck') renderBeckQ(area);
   else if(mode==='lieb') renderLiebQ(area);
   else if(mode==='beckdep') renderBeckDepQ(area);
   else renderDepQ(area);
 }
 
-function renderBeckQ(area) {
-  var q=beckQs[current]; var sel=answers[current];
-  area.innerHTML='<div class="question-card glass fade-in"><div class="q-number">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-text">'+q+'</div><div class="options-grid">'+
-    beckOpts.map(function(o,i){return '<button class="option-btn '+(sel===i?'selected':'')+'" onclick="selectBeck('+i+')"><div class="option-dot"></div><div><div class="option-score">'+o.emoji+' '+o.label+'</div><div class="option-label">'+o.sub+'</div></div></button>';}).join('')+
+function renderBeckQ(area){
+  var q=beckQs[current];var sel=answers[current];
+  area.innerHTML='<div class="question-card fade-in"><div class="q-eyebrow">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-text">'+q+'</div><div class="opts-grid">'+
+    beckOpts.map(function(o,i){return '<button class="opt-btn'+(sel===i?' selected':'')+'" onclick="selectBeck('+i+')"><div class="opt-check"></div><span class="opt-emoji">'+o.emoji+'</span><div class="opt-label-wrap"><div class="opt-title">'+o.label+'</div><div class="opt-sub">'+o.sub+'</div></div></button>';}).join('')+
     '</div></div>';
 }
 
-function renderLiebQ(area) {
-  var q=liebQs[current]; var sel=answers[current];
-  area.innerHTML='<div class="question-card glass fade-in"><div class="q-number">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-text">'+q+'</div><div class="dual-options">'+
-    '<div class="dual-group"><label>😰 Kaygı düzeyim</label><div class="dual-opts">'+
-    liebOpts.map(function(o,i){return '<button class="dual-btn '+(sel&&sel.kaygi===i?'selected':'')+'" onclick="selectLiebK('+i+')"><span class="dual-btn-label">'+o.label+'</span></button>';}).join('')+
-    '</div></div><div class="dual-group"><label>🚶 Kaçınma düzeyim</label><div class="dual-opts">'+
-    liebOpts.map(function(o,i){return '<button class="dual-btn '+(sel&&sel.kacinma===i?'selected':'')+'" onclick="selectLiebC('+i+')"><span class="dual-btn-label">'+o.label+'</span></button>';}).join('')+
-    '</div></div></div></div>';
+function renderLiebQ(area){
+  var q=liebQs[current];var sel=answers[current];
+  area.innerHTML='<div class="question-card fade-in"><div class="q-eyebrow">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-text">'+q+'</div><div class="dual-wrap">'+
+    '<div class="dual-group"><span class="dual-lbl">😰 Kaygı düzeyim</span><div class="dual-opts">'+liebOpts.map(function(o,i){return '<button class="dual-btn'+(sel&&sel.kaygi===i?' selected':'')+'" onclick="selectLiebK('+i+')">'+o.label+'</button>';}).join('')+'</div></div>'+
+    '<div class="dual-group"><span class="dual-lbl">🚶 Kaçınma düzeyim</span><div class="dual-opts">'+liebOpts.map(function(o,i){return '<button class="dual-btn'+(sel&&sel.kacinma===i?' selected':'')+'" onclick="selectLiebC('+i+')">'+o.label+'</button>';}).join('')+'</div></div>'+
+    '</div></div>';
 }
 
-function renderDepQ(area) {
-  var q=depQs[current]; var sel=answers[current];
-  area.innerHTML='<div class="question-card glass fade-in"><div class="q-number">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-text">Son iki hafta boyunca...<br><span style="color:rgba(200,160,240,.9)">'+q+'</span></div><div style="display:flex;flex-direction:column;gap:8px">'+
-    depOpts.map(function(o,i){return '<button class="option-btn '+(sel===i?'selected':'')+'" onclick="selectDep('+i+')" style="align-items:center"><div class="option-dot"></div><span style="font-size:18px;margin-right:8px">'+o.emoji+'</span><span style="font-size:14px;color:rgba(255,255,255,.85)">'+o.label+'</span></button>';}).join('')+
+function renderDepQ(area){
+  var q=depQs[current];var sel=answers[current];
+  area.innerHTML='<div class="question-card fade-in"><div class="q-eyebrow">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-text">Son iki hafta boyunca...</div><div class="q-hint" style="font-size:15px;color:var(--ink);margin-bottom:1.2rem;font-weight:500">'+q+'</div><div class="opts-col">'+
+    depOpts.map(function(o,i){return '<button class="opt-btn-wide'+(sel===i?' selected':'')+'" onclick="selectDep('+i+')"><div class="opt-check"></div><span class="opt-emoji">'+o.emoji+'</span><div class="opt-title">'+o.label+'</div></button>';}).join('')+
+    '</div></div>';
+}
+
+function renderBeckDepQ(area){
+  var opts=beckDepQs[current];var sel=answers[current];var emojis=['😊','😐','😟','😢'];
+  area.innerHTML='<div class="question-card fade-in"><div class="q-eyebrow">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-hint">Geçen hafta içinde kendinizi nasıl hissettiniz?</div><div class="opts-col">'+
+    opts.map(function(o,i){return '<button class="opt-btn-wide'+(sel===i?' selected':'')+'" onclick="selectBeckDep('+i+')"><div class="opt-check"></div><span class="opt-emoji">'+emojis[i]+'</span><div class="opt-title" style="font-size:13px">'+o+'</div></button>';}).join('')+
     '</div></div>';
 }
 
@@ -277,6 +274,7 @@ function selectBeck(i){answers[current]=i;renderQ();}
 function selectLiebK(i){if(!answers[current])answers[current]={kaygi:null,kacinma:null};answers[current].kaygi=i;renderQ();}
 function selectLiebC(i){if(!answers[current])answers[current]={kaygi:null,kacinma:null};answers[current].kacinma=i;renderQ();}
 function selectDep(i){answers[current]=i;renderQ();}
+function selectBeckDep(i){answers[current]=i;renderQ();}
 
 function isAnswered(){
   if(mode==='beck'||mode==='dep'||mode==='beckdep') return answers[current]!==null;
@@ -286,8 +284,8 @@ function isAnswered(){
 function nextQ(){
   if(!isAnswered()){
     var card=document.querySelector('.question-card');
-    card.style.border='1px solid rgba(255,100,100,.5)';
-    setTimeout(function(){card.style.border='1px solid rgba(255,255,255,.2)';},600);
+    card.style.borderColor='var(--red)';
+    setTimeout(function(){card.style.borderColor='var(--border)';},600);
     return;
   }
   if(current<totalQs-1){current++;renderQ();}
@@ -306,34 +304,45 @@ function showResult(){
   else showDepResult();
 }
 
-function resultHTML(emoji,level,color,total,max,desc,note,bars,extra){
-  var barHTML='<div class="result-bars" style="grid-template-columns:repeat('+bars.length+',1fr)">'+
-    bars.map(function(b,i){return '<div class="result-bar-item"><div class="result-bar-bg"><div class="result-bar-fill" id="rb'+i+'" style="height:0%;background:'+b.color+'"></div></div><div class="result-bar-label">'+b.label+'<br><small style="color:rgba(255,255,255,.4)">'+b.val+'/'+b.max+'</small></div></div>';}).join('')+'</div>';
-  return '<span class="result-emoji">'+emoji+'</span><div class="result-level">'+level+'</div>'+
-    '<div class="result-score-wrap"><div class="result-score-circle" style="background:linear-gradient(135deg,'+color+',rgba(155,126,200,.2))"><div class="score-num">'+total+'</div><div class="score-label">/ '+max+' puan</div></div></div>'+
-    '<p class="result-desc">'+desc+'</p>'+barHTML+
-    '<div class="result-note">ℹ️ <strong>Ne anlama geliyor?</strong> '+note+'</div>'+
-    (extra||'')+
-    '<div class="result-note" style="background:rgba(255,200,100,.08);border-color:rgba(255,200,100,.2)">⚠️ <strong>Önemli Not:</strong> Bu test klinik bir tanı aracı değildir. Kesin değerlendirme için bir uzman psikologla görüşün.</div>'+
-    '<div style="margin-top:1.5rem"><button class="btn-restart" onclick="goBack()">← Testlere Dön</button><a href="index.html#seans" class="btn-expert">Uzmanla Görüş →</a></div>';
+function levelData(total,thresholds){
+  var levels=[
+    {emoji:'🌱',label:'Minimal',ringColor:'#22C55E'},
+    {emoji:'🌤',label:'Hafif',ringColor:'#F59E0B'},
+    {emoji:'🌧',label:'Orta Düzey',ringColor:'#F97316'},
+    {emoji:'⛈',label:'Şiddetli',ringColor:'#EF4444'}
+  ];
+  for(var i=0;i<thresholds.length;i++){if(total<=thresholds[i]) return levels[i];}
+  return levels[levels.length-1];
+}
+
+function barsHTML(bars){
+  return '<div class="result-bars" style="grid-template-columns:1fr;max-width:400px;margin:1.5rem auto">'+
+    bars.map(function(b,i){return '<div class="rb-item"><div class="rb-label">'+b.label+'</div><div class="rb-track"><div class="rb-fill" id="rb'+i+'" style="width:0%;background:'+b.color+'"></div></div><div class="rb-val">'+b.val+'/'+b.max+'</div></div>';}).join('')+'</div>';
+}
+
+function resultActions(){
+  return '<div class="result-actions"><button class="btn-goback" onclick="goBack()">← Testlere Dön</button><a href="index.html#seans" class="btn-expert">Uzmanla Görüş →</a></div>';
 }
 
 function showBeckResult(){
   var total=answers.reduce(function(s,a){return s+(a!==null?beckOpts[a].score:0);},0);
-  var emoji,level,color,desc,note;
-  if(total<=7){emoji='🌸';level='Minimal Kaygı';color='rgba(100,200,120,.4)';desc='Harika! Kaygı belirtileriniz oldukça düşük.';note='0–7 puan minimal kaygıya işaret eder.';}
-  else if(total<=15){emoji='🌤';level='Hafif Kaygı';color='rgba(220,200,80,.4)';desc='Bazı kaygı belirtileri yaşıyorsunuz. Yönetilebilir bir durum.';note='8–15 puan hafif kaygıya işaret eder.';}
-  else if(total<=25){emoji='🌧';level='Orta Düzey Kaygı';color='rgba(220,150,60,.4)';desc='Orta düzeyde kaygı var. Bir uzmanla konuşmak faydalı olabilir.';note='16–25 puan orta düzey kaygıya işaret eder.';}
-  else{emoji='⛈';level='Şiddetli Kaygı';color='rgba(220,80,80,.4)';desc='Yoğun kaygı belirtileri yaşıyorsunuz. Lütfen destek alın.';note='26+ puan şiddetli kaygıya işaret eder.';}
+  var ld=levelData(total,[7,15,25]);
+  var descs=['Kaygı belirtileriniz oldukça düşük. Genel olarak iyi hissediyorsunuz.','Bazı kaygı belirtileri var. Yönetilebilir bir durum, kendinize iyi bakın.','Orta düzeyde kaygı belirtileri var. Bir uzmanla görüşmek faydalı olabilir.','Yoğun kaygı belirtileri yaşıyorsunuz. Lütfen profesyonel destek alın.'];
+  var notes=['0–7 puan minimal kaygıya işaret eder.','8–15 puan hafif kaygıya işaret eder.','16–25 puan orta düzey kaygıya işaret eder.','26+ puan şiddetli kaygıya işaret eder.'];
+  var li=[0,1,2,3];var desc=descs[li.find(function(i){return total<=[7,15,25,99][i];})||3];
+  var note=notes[li.find(function(i){return total<=[7,15,25,99][i];})||3];
   var cats=[[0,1,2,5,6,7,11,12,17,18,19,20],[3,4,8,9,13,15,16],[10,14]];
-  var maxes=[36,21,6];
-  var bars=cats.map(function(c,i){
-    var s=c.reduce(function(sum,qi){return sum+(answers[qi]!==null?beckOpts[answers[qi]].score:0);},0);
-    return {label:['Bedensel','Bilişsel','Panik'][i],val:s,max:maxes[i],color:'linear-gradient(to top,#a87ee0,#d478c0)'};
-  });
-  bars.push({label:'Toplam',val:total,max:63,color:'linear-gradient(to top,#e0c068,#a87ee0)'});
-  document.getElementById('resultArea').innerHTML=resultHTML(emoji,level,color,total,63,desc,note,bars,'');
-  setTimeout(function(){bars.forEach(function(b,i){document.getElementById('rb'+i).style.height=Math.round((b.val/b.max)*100)+'%';});},300);
+  var bars=cats.map(function(c,i){var s=c.reduce(function(sum,qi){return sum+(answers[qi]!==null?beckOpts[answers[qi]].score:0);},0);return {label:['Bedensel','Bilişsel','Panik'][i],val:s,max:[36,21,6][i],color:['#2D6A9F','#4A7C6F','#E97B5A'][i]};});
+  bars.push({label:'Toplam',val:total,max:63,color:ld.ringColor});
+  document.getElementById('resultArea').innerHTML=
+    '<span class="result-emoji">'+ld.emoji+'</span>'+
+    '<div class="result-level">'+ld.label+' Kaygı</div>'+
+    '<div class="result-score-ring" style="border-color:'+ld.ringColor+'"><div class="score-num">'+total+'</div><div class="score-max">/ 63 puan</div></div>'+
+    '<p class="result-desc">'+desc+'</p>'+barsHTML(bars)+
+    '<div class="result-note">ℹ️ <strong>Ne anlama geliyor?</strong> '+note+'</div>'+
+    '<div class="result-note warn">⚠️ <strong>Önemli Not:</strong> Bu test klinik bir tanı aracı değildir. Kesin değerlendirme için bir uzman psikologla görüşün.</div>'+
+    resultActions();
+  setTimeout(function(){bars.forEach(function(b,i){document.getElementById('rb'+i).style.width=Math.round((b.val/b.max)*100)+'%';});},300);
   document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
 }
 
@@ -341,34 +350,58 @@ function showLiebResult(){
   var kt=0,ct=0;
   answers.forEach(function(a){if(a){kt+=a.kaygi!==null?liebOpts[a.kaygi].score:0;ct+=a.kacinma!==null?liebOpts[a.kacinma].score:0;}});
   var total=kt+ct;
-  var emoji,level,color,desc,note;
-  if(total<=48){emoji='🌸';level='Minimal Sosyal Kaygı';color='rgba(100,200,120,.4)';desc='Sosyal durumlarda düşük kaygı yaşıyorsunuz.';note='48 ve altı minimal sosyal kaygıya işaret eder.';}
-  else if(total<=72){emoji='🌤';level='Hafif Sosyal Kaygı';color='rgba(220,200,80,.4)';desc='Bazı sosyal durumlarda hafif kaygı mevcut.';note='49–72 puan hafif sosyal kaygıya işaret eder.';}
-  else if(total<=96){emoji='🌧';level='Orta Düzey Sosyal Fobi';color='rgba(220,150,60,.4)';desc='Belirgin kaygı ve kaçınma var. Destek faydalı olabilir.';note='73–96 puan orta düzey sosyal fobiye işaret eder.';}
-  else{emoji='⛈';level='Şiddetli Sosyal Fobi';color='rgba(220,80,80,.4)';desc='Yoğun sosyal kaygı var. Lütfen destek alın.';note='97+ puan şiddetli sosyal fobiye işaret eder.';}
-  var bars=[{label:'Kaygı',val:kt,max:96,color:'linear-gradient(to top,#7896d4,#a87ee0)'},{label:'Kaçınma',val:ct,max:96,color:'linear-gradient(to top,#d478c0,#e0a0d8)'},{label:'Toplam',val:total,max:192,color:'linear-gradient(to top,#e0c068,#a87ee0)'}];
-  document.getElementById('resultArea').innerHTML=resultHTML(emoji,level,color,total,192,desc,note,bars,'');
-  setTimeout(function(){bars.forEach(function(b,i){document.getElementById('rb'+i).style.height=Math.round((b.val/b.max)*100)+'%';});},300);
+  var ld=levelData(total,[48,72,96]);
+  var descs=['Sosyal durumlarda düşük kaygı ve kaçınma yaşıyorsunuz.','Bazı sosyal durumlarda hafif kaygı mevcut.','Belirgin kaygı ve kaçınma var. Uzman desteği faydalı olabilir.','Yoğun sosyal kaygı belirtileri var. Lütfen profesyonel destek alın.'];
+  var li=[0,1,2,3];var idx=li.find(function(i){return total<=[48,72,96,999][i];})||3;
+  var bars=[{label:'Kaygı',val:kt,max:96,color:'#2D6A9F'},{label:'Kaçınma',val:ct,max:96,color:'#4A7C6F'},{label:'Toplam',val:total,max:192,color:ld.ringColor}];
+  document.getElementById('resultArea').innerHTML=
+    '<span class="result-emoji">'+ld.emoji+'</span>'+
+    '<div class="result-level">'+ld.label+' Sosyal Kaygı</div>'+
+    '<div class="result-score-ring" style="border-color:'+ld.ringColor+'"><div class="score-num">'+total+'</div><div class="score-max">/ 192 puan</div></div>'+
+    '<p class="result-desc">'+descs[idx]+'</p>'+barsHTML(bars)+
+    '<div class="result-note warn">⚠️ Bu test klinik bir tanı aracı değildir. Kesin değerlendirme için bir uzman psikologla görüşün.</div>'+
+    resultActions();
+  setTimeout(function(){bars.forEach(function(b,i){document.getElementById('rb'+i).style.width=Math.round((b.val/b.max)*100)+'%';});},300);
   document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
 }
 
 function showDepResult(){
   var total=answers.reduce(function(s,a){return s+(a!==null?depOpts[a].score:0);},0);
-  var emoji,level,color,desc,note,extra='';
-  if(total<=6){emoji='🌸';level='Depresyon Belirtisi Yok';color='rgba(100,200,120,.4)';desc='Son iki haftada depresyon belirtisi gözükmüyor.';note='0–6 puan depresyon belirtisi olmadığına işaret eder.';}
-  else if(total<=19){emoji='🌤';level='Hafif Depresyon';color='rgba(220,200,80,.4)';desc='Hafif depresif belirtiler mevcut. Yönetilebilir bir durum.';note='7–19 puan hafif depresyona işaret eder.';}
-  else if(total<=34){emoji='🌧';level='Orta Düzey Depresyon';color='rgba(220,150,60,.4)';desc='Orta düzey depresif belirtiler var. Uzman desteği faydalı olur.';note='20–34 puan orta düzey depresyona işaret eder.';}
-  else{emoji='⛈';level='Şiddetli Depresyon';color='rgba(220,80,80,.4)';desc='Yoğun depresif belirtiler var. Lütfen en kısa sürede destek alın.';note='35+ puan şiddetli depresyona işaret eder.';}
-  if(total>=25) extra='<div class="result-note" style="background:rgba(255,100,100,.1);border-color:rgba(255,100,100,.3)">🆘 Kendinize zarar verme düşünceleri yaşıyorsanız lütfen <strong>182 Psikolojik Destek Hattı</strong>\'nı arayın.</div>';
+  var ld=levelData(total,[6,19,34]);
+  var descs=['Son iki haftada depresyon belirtisi gözükmüyor.','Hafif depresif belirtiler mevcut. Kendinize iyi bakın.','Orta düzey belirtiler var. Uzman desteği faydalı olur.','Yoğun depresif belirtiler yaşıyorsunuz. Lütfen profesyonel destek alın.'];
+  var li=[0,1,2,3];var idx=li.find(function(i){return total<=[6,19,34,999][i];})||3;
+  var extra=total>=25?'<div class="result-note danger">🆘 Kendinize zarar verme düşünceleri yaşıyorsanız <strong>182 Psikolojik Destek Hattı</strong>\'nı arayın.</div>':'';
   var cats=[[0,1,4,5],[2,7,8,9],[3,6]];
-  var maxes=[20,20,10];
-  var bars=cats.map(function(c,i){
-    var s=c.reduce(function(sum,qi){return sum+(answers[qi]!==null?depOpts[answers[qi]].score:0);},0);
-    return {label:['Duygu','Fiziksel','Bilişsel'][i],val:s,max:maxes[i],color:'linear-gradient(to top,#7896d4,#d478c0)'};
-  });
-  bars.push({label:'Toplam',val:total,max:50,color:'linear-gradient(to top,#e0c068,#a87ee0)'});
-  document.getElementById('resultArea').innerHTML=resultHTML(emoji,level,color,total,50,desc,note,bars,extra);
-  setTimeout(function(){bars.forEach(function(b,i){document.getElementById('rb'+i).style.height=Math.round((b.val/b.max)*100)+'%';});},300);
+  var bars=cats.map(function(c,i){var s=c.reduce(function(sum,qi){return sum+(answers[qi]!==null?depOpts[answers[qi]].score:0);},0);return {label:['Duygu','Fiziksel','Bilişsel'][i],val:s,max:[20,20,10][i],color:['#2D6A9F','#4A7C6F','#E97B5A'][i]};});
+  bars.push({label:'Toplam',val:total,max:50,color:ld.ringColor});
+  document.getElementById('resultArea').innerHTML=
+    '<span class="result-emoji">'+ld.emoji+'</span>'+
+    '<div class="result-level">'+ld.label+' Depresyon</div>'+
+    '<div class="result-score-ring" style="border-color:'+ld.ringColor+'"><div class="score-num">'+total+'</div><div class="score-max">/ 50 puan</div></div>'+
+    '<p class="result-desc">'+descs[idx]+'</p>'+barsHTML(bars)+extra+
+    '<div class="result-note warn">⚠️ Bu test klinik bir tanı aracı değildir. Kesin değerlendirme için bir uzman psikologla görüşün.</div>'+
+    resultActions();
+  setTimeout(function(){bars.forEach(function(b,i){document.getElementById('rb'+i).style.width=Math.round((b.val/b.max)*100)+'%';});},300);
+  document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
+}
+
+function showBeckDepResult(){
+  var total=answers.reduce(function(s,a){return s+(a!==null?a:0);},0);
+  var ld=levelData(total,[9,16,29]);
+  var descs=['Depresyon belirtileri minimal düzeyde.','Hafif depresif belirtiler mevcut. Kendinize iyi bakın.','Orta düzeyde depresif belirtiler var. Uzman görüşü önerilir.','Yoğun depresif belirtiler yaşıyorsunuz. Lütfen profesyonel destek alın.'];
+  var li=[0,1,2,3];var idx=li.find(function(i){return total<=[9,16,29,999][i];})||3;
+  var extra=(answers[8]!==null&&answers[8]>=2)?'<div class="result-note danger">🆘 Kendinize zarar verme düşünceleri yaşıyorsanız <strong>182 Psikolojik Destek Hattı</strong>\'nı arayın.</div>':'';
+  var cats=[[0,1,2,3],[4,5,6,7,8],[9,10,11,12],[13,14,15,16,17,18,19,20]];
+  var bars=cats.map(function(c,i){var s=c.reduce(function(sum,qi){return sum+(answers[qi]!==null?answers[qi]:0);},0);return {label:['Duygu','Öz Değer','Davranış','Fiziksel'][i],val:s,max:c.length*3,color:['#2D6A9F','#4A7C6F','#E97B5A','#8B5CF6'][i]};});
+  bars.push({label:'Toplam',val:total,max:63,color:ld.ringColor});
+  document.getElementById('resultArea').innerHTML=
+    '<span class="result-emoji">'+ld.emoji+'</span>'+
+    '<div class="result-level">'+ld.label+' Depresyon</div>'+
+    '<div class="result-score-ring" style="border-color:'+ld.ringColor+'"><div class="score-num">'+total+'</div><div class="score-max">/ 63 puan</div></div>'+
+    '<p class="result-desc">'+descs[idx]+'</p>'+barsHTML(bars)+extra+
+    '<div class="result-note warn">⚠️ Bu test klinik bir tanı aracı değildir. Kesin değerlendirme için bir uzman psikologla görüşün.</div>'+
+    resultActions();
+  setTimeout(function(){bars.forEach(function(b,i){document.getElementById('rb'+i).style.width=Math.round((b.val/b.max)*100)+'%';});},300);
   document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
 }
 
