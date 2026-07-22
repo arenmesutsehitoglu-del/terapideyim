@@ -1282,7 +1282,7 @@ const AT_TABLE = 'tblhmyB48pz4zJYDd';
 
 async function airtableKaydet(fields) {
   try {
-    await fetch('/.netlify/functions/airtable', {
+    await fetch('/api/airtable', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ fields })
