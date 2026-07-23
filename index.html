@@ -478,16 +478,15 @@ async function sendMessage(){
   inp.value='';inp.style.height='auto';
   addMsg('user',txt);showTyping();
   try{
-    const res=await fetch('https://api.groq.com/openai/v1/chat/completions',{
+    const res=await fetch('/api/chat',{
       method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+GROQ_KEY},
-      body:JSON.stringify({model:GROQ_MODEL,max_tokens:800,messages:[{role:'system',content:SYS},...chatHistory]})
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages:chatHistory})
     });
     const data=await res.json();hideTyping();
-    if(data.error){addMsg('assistant','⚠️ '+data.error.message);return;}
-    const reply=data.choices?.[0]?.message?.content||'Üzgünüm, yanıt veremiyorum.';
-    chatHistory.push({role:'assistant',content:reply});
-    addMsg('assistant',reply);
+    if(data.error){addMsg('assistant','⚠️ '+data.error);return;}
+    chatHistory.push({role:'assistant',content:data.reply});
+    addMsg('assistant',data.reply);
   }catch(e){hideTyping();addMsg('assistant','Bağlantı hatası, lütfen tekrar deneyin.');}
 }
 
