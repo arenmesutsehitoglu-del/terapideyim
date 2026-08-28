@@ -785,7 +785,7 @@ function sendSeans(){
   var cyas=document.getElementById('seans-cocuk-yas').value.trim();
   if(!ad||!tel||!mail){showToast('Lütfen zorunlu alanları doldurun.',false);return;}
   if(icin==='cocuk'&&!cocuk){showToast('Lütfen çocuğunuzun adını girin.',false);return;}
-  airtableKaydet({Name:ad,Phone:tel,Email:mail,Type:'Session',Message:(icin==='cocuk'?'Çocuk: '+cocuk+(cyas?' ('+cyas+' yaş)':'')+ ' | ':'')+(sorun||'')+(yas?' | Yaş: '+yas:''),Date:new Date().toISOString().split('T')[0],'Seans Türü':tur,'Seans Çeşidi':cesit});
+  airtableKaydet({Name:ad,Phone:tel,Email:mail,Type:'Session',Message:tur+' | '+cesit+(icin==='cocuk'?' | Çocuk: '+cocuk+(cyas?' ('+cyas+' yaş)':''):'')+(sorun?' | '+sorun:'')+(yas?' | Yaş: '+yas:''),Date:new Date().toISOString().split('T')[0]});
   gonder({konu:'Seans Talebi','Ad Soyad':ad,'Telefon':tel,'E-posta':mail,'Seans İçin':icin==='benim'?'Kendisi':'Çocuğu ('+cocuk+(cyas?', '+cyas+' yaş':'')+')', 'Seans Türü':tur,'Seans Çeşidi':cesit,'Yaş':yas||'—','Not':sorun||'—'},'seans-success','Seans talebiniz oluşturuldu!');
 }
 </script>
