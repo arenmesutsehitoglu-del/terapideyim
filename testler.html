@@ -34,7 +34,7 @@ header{position:sticky;top:0;z-index:100;background:rgba(247,248,245,0.95);backd
 .page-title em{font-style:italic;color:var(--sage)}
 .page-sub{font-size:15px;color:var(--ink-soft);font-weight:300;line-height:1.7;max-width:480px;margin:0 auto}
 
-.tests-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:2rem}
+.tests-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2rem}
 @media(max-width:600px){.tests-grid{grid-template-columns:1fr}}
 .test-card{background:#FFFFFF;border:1.5px solid #E2E8E4;border-radius:16px;padding:1.6rem;cursor:pointer;transition:all .22s;text-align:left}
 .test-card:hover{border-color:var(--sage);box-shadow:0 8px 32px rgba(45,106,159,0.1);transform:translateY(-2px)}
@@ -177,6 +177,34 @@ header{position:sticky;top:0;z-index:100;background:rgba(247,248,245,0.95);backd
         <div class="tc-desc">Geçen hafta içinde kendinizi nasıl hissettiniz?</div>
         <div class="tc-pills"><span class="tc-pill">⏱ 5 dk</span><span class="tc-pill">21 soru</span></div>
       </div>
+      <div class="test-card" onclick="startBeckUmutsuzluk()">
+        <span class="tc-icon">🌑</span>
+        <div class="tc-eyebrow">Beck Umutsuzluk</div>
+        <div class="tc-title">Beck Umutsuzluk Ölçeği</div>
+        <div class="tc-desc">Geleceğe yönelik beklenti ve düşüncelerinizi değerlendirin.</div>
+        <div class="tc-pills"><span class="tc-pill">⏱ 3 dk</span><span class="tc-pill">20 soru</span></div>
+      </div>
+      <div class="test-card" onclick="startEndise()">
+        <span class="tc-icon">😰</span>
+        <div class="tc-eyebrow">Endişe Şiddeti</div>
+        <div class="tc-title">Endişe Şiddeti Ölçeği</div>
+        <div class="tc-desc">Endişe yaşadığınız durumları ne kadar doğru yansıtıyor?</div>
+        <div class="tc-pills"><span class="tc-pill">⏱ 2 dk</span><span class="tc-pill">8 soru</span></div>
+      </div>
+      <div class="test-card" onclick="startSosyalAnksiyete()">
+        <span class="tc-icon">👧</span>
+        <div class="tc-eyebrow">Çocuk Sosyal Kaygı</div>
+        <div class="tc-title">Çocuklar İçin Sosyal Anksiyete Ölçeği</div>
+        <div class="tc-desc">Son bir ayda çocuğunuzun sosyal kaygı belirtilerini değerlendirin.</div>
+        <div class="tc-pills"><span class="tc-pill">⏱ 4 dk</span><span class="tc-pill">18 soru</span><span class="tc-pill">👶 Çocuk</span></div>
+      </div>
+      <div class="test-card" onclick="startAnneBaba()">
+        <span class="tc-icon">👨‍👩‍👧</span>
+        <div class="tc-eyebrow">Ebeveyn Tutumu</div>
+        <div class="tc-title">Anne-Baba Tutum Ölçeği</div>
+        <div class="tc-desc">Anne ve babanızın tutumunu 5 dereceli ölçekte değerlendirin.</div>
+        <div class="tc-pills"><span class="tc-pill">⏱ 8 dk</span><span class="tc-pill">50 soru</span></div>
+      </div>
     </div>
   </div>
 
@@ -238,6 +266,10 @@ function renderQ(){
   if(mode==='beck') renderBeckQ(area);
   else if(mode==='lieb') renderLiebQ(area);
   else if(mode==='beckdep') renderBeckDepQ(area);
+  else if(mode==='beckum') renderBeckUmQ(area);
+  else if(mode==='endise') renderEndiseQ(area);
+  else if(mode==='sosyal') renderSosyalQ(area);
+  else if(mode==='annebaba') renderAnneBabaQ(area);
   else renderDepQ(area);
 }
 
@@ -277,7 +309,7 @@ function selectDep(i){answers[current]=i;renderQ();}
 function selectBeckDep(i){answers[current]=i;renderQ();}
 
 function isAnswered(){
-  if(mode==='beck'||mode==='dep'||mode==='beckdep') return answers[current]!==null;
+  if(mode==='beck'||mode==='dep'||mode==='beckdep'||mode==='beckum'||mode==='endise'||mode==='sosyal'||mode==='annebaba') return answers[current]!==null;
   return answers[current]&&answers[current].kaygi!==null&&answers[current].kacinma!==null;
 }
 
@@ -301,6 +333,10 @@ function showResult(){
   if(mode==='beck') showBeckResult();
   else if(mode==='lieb') showLiebResult();
   else if(mode==='beckdep') showBeckDepResult();
+  else if(mode==='beckum') showBeckUmResult();
+  else if(mode==='endise') showEndiseResult();
+  else if(mode==='sosyal') showSosyalResult();
+  else if(mode==='annebaba') showAnneBabaResult();
   else showDepResult();
 }
 
@@ -402,6 +438,211 @@ function showBeckDepResult(){
     '<div class="result-note warn">⚠️ Bu test klinik bir tanı aracı değildir. Kesin değerlendirme için bir uzman psikologla görüşün.</div>'+
     resultActions();
   setTimeout(function(){bars.forEach(function(b,i){document.getElementById('rb'+i).style.width=Math.round((b.val/b.max)*100)+'%';});},300);
+  document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
+}
+
+// ── BECK UMUTSUZLUK ──────────────────────────────────────────────────────
+var beckUmQs=[
+  {q:'Geleceğe umut ve coşku ile bakıyorum',dogru:false},
+  {q:'Kendim ile ilgili şeyleri düzeltemediğime göre çabalamayı bıraksam iyi olur.',dogru:true},
+  {q:'İşler kötüye giderken bile her şeyin hep böyle kalmayacağını bilmek beni rahatlatıyor.',dogru:false},
+  {q:'Gelecek on yıl içinde hayatımın nasıl olacağını hayal bile edemiyorum.',dogru:true},
+  {q:'Yapmayı en çok istediğim şeyleri gerçekleştirmek için yeterli zamanım var.',dogru:false},
+  {q:'Benim için çok önemli konularda ileride başarılı olacağımı umuyorum.',dogru:false},
+  {q:'Geleceğimi karanlık görüyorum.',dogru:true},
+  {q:'Dünya nimetlerinden sıradan bir insandan daha çok yararlanacağımı umuyorum.',dogru:false},
+  {q:'İyi fırsatlar yakalayamıyorum. Gelecekte yakalayacağıma inanmam için de hiçbir neden yok.',dogru:true},
+  {q:'Geçmiş deneyimlerim beni geleceğe iyi hazırladı.',dogru:false},
+  {q:'Gelecek benim için hoş şeylerden çok tatsızlıklarla dolu görünüyor.',dogru:true},
+  {q:'Gerçekten özlediğim şeylere kavuşabileceğimi ummuyorum.',dogru:true},
+  {q:'Geleceğe baktığımda şimdikine oranla daha mutlu olacağımı umuyorum.',dogru:false},
+  {q:'İşler bir türlü benim istediğim gibi gitmiyor.',dogru:true},
+  {q:'Geleceğe büyük inancım var.',dogru:false},
+  {q:'Arzu ettiğim şeyleri elde edemediğime göre bir şeyler istemek aptallık olur.',dogru:true},
+  {q:'Gelecekte gerçek doyuma ulaşmam olanaksız gibi.',dogru:true},
+  {q:'Gelecek bana bulanık ve belirsiz görünüyor.',dogru:true},
+  {q:'Kötü günlerden çok, iyi günler bekliyorum.',dogru:false},
+  {q:'İstediğim her şeyi elde etmek için çaba göstermenin gerçekten yararı yok, nasıl olsa onu elde edemeyeceğim.',dogru:true}
+];
+
+// ── ENDİŞE ŞİDDETİ ──────────────────────────────────────────────────────
+var endiseQs=[
+  'Endişelendiğim zaman bu benim günümü, o günkü işlerimi etkiler.',
+  'Bir konu hakkında endişelenmekten vazgeçmem gerektiğini düşündüğüm zaman, bu konu hakkında daha da fazla endişelenmeye başladığımı fark ederim.',
+  'Endişelenmem, kendimi moralsiz ve çökmüş hissetmeme neden olur.',
+  'Endişelendiğim zaman, karar verme ve problem çözme becerilerim olumsuz yönde etkilenir.',
+  'Endişelendiğimde kendimi gergin ve bunalmış hissederim.',
+  'Kötü şeylerin veya olayların olacağına kesin gözüyle bakar, bundan endişe duyarım.',
+  'Sıklıkla, endişelenmekten kendimi alıkoyamayacağımdan endişelenirim.',
+  'Endişelenmemin bir sonucu olarak, duygusal açıdan tedirgin veya rahatsız hissetmeye yatkınımdır.'
+];
+var endiseOpts=[{label:'Kesinlikle doğru değil',score:0},{label:'Kısmen doğru',score:1},{label:'Oldukça doğru',score:2},{label:'Tamamen doğru',score:3}];
+
+// ── ÇOCUKLAR İÇİN SOSYAL ANKSİYETE ──────────────────────────────────────
+var sosyalQs=[
+  'Başka çocukların önünde yeni bir şey yapmaktan rahatsız olurum.',
+  'Bana şaka yapılmasından rahatsız olurum.',
+  'Tanımadığım çocukların yanında utanırım.',
+  'Diğer çocuklar arkamdan konuşuyorlar diye düşünürüm.',
+  'Yalnızca iyi tanıdığım çocuklarla konuşurum.',
+  'Diğer çocuklar benim hakkımda ne düşünüyorlar diye endişelenirim.',
+  'Diğer çocuklar benden hoşlanmayacağından korkarım.',
+  'İyi tanımadığım çocuklarla konuşurken rahatsız olurum.',
+  'Diğer çocuklar benim hakkımda ne diyecekler diye endişelenirim.',
+  'Yeni tanıştığım çocuklarla konuşurken rahatsız olurum.',
+  'Diğer çocuklar benden hoşlanmıyorlar diye üzülürüm.',
+  'Bir grup çocukla birlikteyken sessiz kalırım.',
+  'Diğer çocuklar benimle alay ediyorlar diye düşünürüm.',
+  'Başka bir çocukla tartışırsam, onun benden hoşlanmayacağından korkarım.',
+  'Başkalarını evime çağırmaktan çekinirim, çünkü hayır diyebilirler.',
+  'Bazı çocukların yanındayken rahatsız olurum.',
+  'İyi tanıdığım çocukların yanındayken bile utanırım.',
+  'Başka çocuklarla birlikte oynamayı teklif etmek bana zor gelir.'
+];
+var sosyalOpts=[{label:'Hiçbir zaman',score:1},{label:'Çok az',score:2},{label:'Bazen',score:3},{label:'Çoğu zaman',score:4},{label:'Daima',score:5}];
+
+// ── ANNE BABA TUTUM ──────────────────────────────────────────────────────
+var anneBabaQs=[
+  'İyi bir çocuğun, ana babasının istediği biçimde yetişen, onların dediklerini aynen yerine getiren kimse olduğunu söyler.',
+  'Benimle ilgili bir karar alırken istek ve gereksinimlerimi dikkate alır.',
+  'Karşı cinsten arkadaşlar edinmeme izin vermez.',
+  'Bir güçlükle karşılaştığım zaman beni kendi bulduğu çözüm yolunu uygulamaya zorlar.',
+  'Hiçbir konuda kişisel görüşümü sormaz.',
+  'Dayağın "cennetten çıkma" olduğuna inanır, ara sıra kullanmakta sakınca görmez.',
+  'Bana önemli ve değerli bir kişi olduğum inancını vermiştir.',
+  'Ailemizi ilgilendiren konularda karar verirken benim fikirlerimi de dikkate alır.',
+  'Paramı nerelere harcadığımı ayrıntılı bir biçimde kontrol eder.',
+  'Cezalandırmak yerine meselelerini benimle konuşmayı yeğler.',
+  'Beni aklımı kullanmaya, kararlarımı kendi kendime vermeye özendirir.',
+  'Ders çalışıp çalışmadığımı sürekli kontrol eder.',
+  'Ders dışı uğraşlarımı hoş karşılamaz.',
+  'İlgi ve yeteneklerime uygun meslek seçmede beni serbest bırakır.',
+  'Haklı olduğum zaman bunu açıkça söyler.',
+  'Okulda iyi notlar almadığım zaman çok kızar.',
+  'Konuşma düzeyinde bile, cinsel konulara ilgi göstermemi istemez.',
+  'Boş zamanlarımı kendi ilgi ve gereksinmelerim doğrultusunda kullanmaya özendirir.',
+  'Evden fazla uzak olmayan bir yere bile giderken izin almamı ister.',
+  'Cinsel konularda sağlıklı bir tavır geliştirmeme yardım eder.',
+  'Nedenlerini bile bilmediğim cezalar verir.',
+  'Farklı görüşlerde olmamızı doğal karşılar.',
+  'Yerinde ve duruma uygun kararlar verebileceğime inanır.',
+  'Fikirlerime saygı gösterir.',
+  'Gençlerin, ailelerinin seçeceği kimselerle evlenmesi gerektiği görüşündedir.',
+  'Geleceğime karşı içten bir ilgi gösterir ama amaçlarımı belirlemeye çalışmaz.',
+  'Aynı fikirde olmadığımız zaman benimle alay eder, bu konuları anlayacak düzeye gelmediğimi söyler.',
+  'Üstün başarı göstermemde öyle ısrar eder ki, not konusunda kaygılanırım.',
+  'Bir çatışmaya girdiğim zaman, kendi fikrini kabul ettirmeye çalışmadan, kimin neden haklı olduğunu görmeme yardım eder.',
+  'Herhangi bir konuda doğru karar verebileceğime inanmaz.',
+  'Hoşlanmadığı kimselerle arkadaşlık etmemi kesinlikle yasaklar.',
+  'Anlattıklarımı can kulağı ile dinler, ancak sırlarımı öğrenmek için beni zorlamaz.',
+  'Arkadaşlarımı eve çağırmama ve arkadaş toplantılarına katılmama izin verir.',
+  'Bir derdim olduğu zaman beni dinlemeye hazırdır.',
+  'Bir güçlükle karşılaştığımda istediği yardımı sağlar, fakat kararı bana bırakır.',
+  'Anlaşamadığımız konularda da fikirlerimi rahatça anlatmama olanak verir ve beni sabırla dinler.',
+  'Küçük hatalarımı bile şiddetle cezalandırır.',
+  'Duygu ve gereksinimlerime karşı daima duyarlı davranmıştır.',
+  'Karşı cinsten bir arkadaşımla aramda geçenleri kendine rahatça anlatmama izin verir.',
+  'Kız-erkek arkadaşların bulunduğu yerlere gitmeme karşı çıkmaz.',
+  'Bana çok hükmeder.',
+  'Beraber çalışırken işlerin nasıl neden böyle olduğunu açıklamaya çalışır.',
+  'Karşı cins hakkında korku ve güvensizlik uyandıracak telkinlerde bulunur.',
+  'Bir işi ne kadar iyi de yapsam beğenmez.',
+  'Beni yapabileceğimden fazlasını yapmaya zorlar.',
+  'Kontrol edilmezlerse çocukların kötü davranışlar edineceklerine inanırlar.',
+  'Bana rehberlik eder ve davranışlarıma hükmetmez.',
+  'Arkadaşlarımı özgürce seçme olanağı tanımaz.',
+  'İçten bir çabayla beni anlamaya çalışır.',
+  'Benimle ilgili kararlara çoğu kez kendisi verir.'
+];
+var anneBabaOpts=[{label:'Hiç katılmıyorum',score:1},{label:'Katılmıyorum',score:2},{label:'Kararsızım',score:3},{label:'Katılıyorum',score:4},{label:'Tamamen katılıyorum',score:5}];
+
+// Start fonksiyonları
+function startBeckUmutsuzluk(){mode='beckum';totalQs=beckUmQs.length;answers=new Array(totalQs).fill(null);current=0;showTestArea();renderQ();}
+function startEndise(){mode='endise';totalQs=endiseQs.length;answers=new Array(totalQs).fill(null);current=0;showTestArea();renderQ();}
+function startSosyalAnksiyete(){mode='sosyal';totalQs=sosyalQs.length;answers=new Array(totalQs).fill(null);current=0;showTestArea();renderQ();}
+function startAnneBaba(){mode='annebaba';totalQs=anneBabaQs.length;answers=new Array(totalQs).fill(null);current=0;showTestArea();renderQ();}
+
+function selectBeckUm(i){answers[current]=i;renderQ();}
+function selectEndise(i){answers[current]=i;renderQ();}
+function selectSosyal(i){answers[current]=i;renderQ();}
+function selectAnneBaba(i){answers[current]=i;renderQ();}
+
+function renderBeckUmQ(area){
+  var q=beckUmQs[current].q;var sel=answers[current];
+  area.innerHTML='<div class="question-card fade-in"><div class="q-eyebrow">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-text">'+q+'</div><div class="opts-grid">'+
+    [{label:'Evet',score:1},{label:'Hayır',score:0}].map(function(o,i){return '<button class="opt-btn'+(sel===i?' selected':'')+'" onclick="selectBeckUm('+i+')"><div class="opt-check"></div><div class="opt-title">'+o.label+'</div></button>';}).join('')+
+    '</div></div>';
+}
+
+function renderEndiseQ(area){
+  var q=endiseQs[current];var sel=answers[current];
+  area.innerHTML='<div class="question-card fade-in"><div class="q-eyebrow">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-text">'+q+'</div><div class="opts-col">'+
+    endiseOpts.map(function(o,i){return '<button class="opt-btn-wide'+(sel===i?' selected':'')+'" onclick="selectEndise('+i+')"><div class="opt-check"></div><div class="opt-title">'+o.label+'</div></button>';}).join('')+
+    '</div></div>';
+}
+
+function renderSosyalQ(area){
+  var q=sosyalQs[current];var sel=answers[current];
+  area.innerHTML='<div class="question-card fade-in"><div class="q-eyebrow">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-text">'+q+'</div><div class="opts-col">'+
+    sosyalOpts.map(function(o,i){return '<button class="opt-btn-wide'+(sel===i?' selected':'')+'" onclick="selectSosyal('+i+')"><div class="opt-check"></div><div class="opt-title">'+o.label+'</div></button>';}).join('')+
+    '</div></div>';
+}
+
+function renderAnneBabaQ(area){
+  var q=anneBabaQs[current];var sel=answers[current];
+  area.innerHTML='<div class="question-card fade-in"><div class="q-eyebrow">Soru '+(current+1)+' / '+totalQs+'</div><div class="q-hint" style="font-size:12px;color:#8FAF9B;font-weight:500;margin-bottom:.5rem">Anne ve babanızı düşünerek yanıtlayın</div><div class="q-text">'+q+'</div><div class="opts-col">'+
+    anneBabaOpts.map(function(o,i){return '<button class="opt-btn-wide'+(sel===i?' selected':'')+'" onclick="selectAnneBaba('+i+')"><div class="opt-check"></div><div class="opt-title">'+o.label+'</div></button>';}).join('')+
+    '</div></div>';
+}
+
+function showBeckUmResult(){
+  var total=0;
+  answers.forEach(function(a,i){
+    if(a===null) return;
+    var q=beckUmQs[i];
+    if(q.dogru&&a===0) total++; // Doğru cevap "Evet" (index 0) ama dogru=true olanlar için 1 puan
+    if(!q.dogru&&a===1) total++; // Doğru cevap "Hayır" (index 1) ama dogru=false olanlar için
+  });
+  var ld=levelData(total,[3,8,13]);
+  var descs=['Umutsuzluk belirtisi minimal. Geleceğe olumlu bakıyorsunuz.','Hafif umutsuzluk belirtileri var. Kendinize iyi bakın.','Orta düzey umutsuzluk. Bir uzmanla görüşmek faydalı olabilir.','Şiddetli umutsuzluk belirtileri. Lütfen profesyonel destek alın.'];
+  var li=[0,1,2,3];var idx=li.find(function(i){return total<=[3,8,13,999][i];})||3;
+  var bars=[{label:'Toplam',val:total,max:20,color:'var(--sage)'}];
+  document.getElementById('resultArea').innerHTML=resultHTML(ld.emoji,ld.label+' Umutsuzluk','rgba(143,175,155,0.2)',total,20,descs[idx],'0–3: Minimal · 4–8: Hafif · 9–14: Orta · 15–20: Şiddetli',bars,'');
+  setTimeout(function(){document.getElementById('rb0').style.width=Math.round((total/20)*100)+'%';},300);
+  document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
+}
+
+function showEndiseResult(){
+  var total=answers.reduce(function(s,a){return s+(a!==null?endiseOpts[a].score:0);},0);
+  var ld=levelData(total,[7,14,19]);
+  var descs=['Endişe belirtileri minimal düzeyde.','Hafif endişe belirtileri var.','Orta düzey endişe. Uzman desteği faydalı olabilir.','Şiddetli endişe belirtileri. Lütfen profesyonel destek alın.'];
+  var li=[0,1,2,3];var idx=li.find(function(i){return total<=[7,14,19,999][i];})||3;
+  var bars=[{label:'Toplam',val:total,max:24,color:'var(--sage)'}];
+  document.getElementById('resultArea').innerHTML=resultHTML(ld.emoji,ld.label+' Endişe','rgba(143,175,155,0.2)',total,24,descs[idx],'0–7: Minimal · 8–14: Hafif · 15–19: Orta · 20–24: Şiddetli',bars,'');
+  setTimeout(function(){document.getElementById('rb0').style.width=Math.round((total/24)*100)+'%';},300);
+  document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
+}
+
+function showSosyalResult(){
+  var total=answers.reduce(function(s,a){return s+(a!==null?sosyalOpts[a].score:0);},0);
+  var ld=levelData(total,[29,42,55]);
+  var descs=['Sosyal kaygı belirtileri minimal.','Hafif sosyal kaygı belirtileri var.','Orta düzey sosyal kaygı. Uzman desteği faydalı olabilir.','Yoğun sosyal kaygı belirtileri. Profesyonel destek önerilir.'];
+  var li=[0,1,2,3];var idx=li.find(function(i){return total<=[29,42,55,999][i];})||3;
+  var bars=[{label:'Toplam',val:total,max:90,color:'var(--sage)'}];
+  document.getElementById('resultArea').innerHTML=resultHTML(ld.emoji,ld.label+' Sosyal Kaygı','rgba(143,175,155,0.2)',total,90,descs[idx],'18–29: Minimal · 30–42: Hafif · 43–55: Orta · 56–90: Şiddetli',bars,'');
+  setTimeout(function(){document.getElementById('rb0').style.width=Math.round((total/90)*100)+'%';},300);
+  document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
+}
+
+function showAnneBabaResult(){
+  var total=answers.reduce(function(s,a){return s+(a!==null?anneBabaOpts[a].score:0);},0);
+  document.getElementById('resultArea').innerHTML=
+    '<span class="result-emoji">👨‍👩‍👧</span>'+
+    '<div class="result-level">Anne-Baba Tutum Değerlendirmesi</div>'+
+    '<div class="result-score-ring" style="border-color:var(--sage)"><div class="score-num">'+total+'</div><div class="score-max">/ 250 puan</div></div>'+
+    '<p class="result-desc">Yanıtlarınız kaydedildi. Bu ölçek, ebeveyn tutumlarını üç boyutta değerlendirmektedir: demokratik, otoriter ve aşırı koruyucu. Sonuçlarınızı bir uzman psikolog ile değerlendirmenizi öneririz.</p>'+
+    '<div class="result-note warn">⚠️ Bu test klinik bir tanı aracı değildir. Kesin değerlendirme için bir uzman psikologla görüşün.</div>'+
+    resultActions();
   document.getElementById('resultArea').scrollIntoView({behavior:'smooth'});
 }
 
